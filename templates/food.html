@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block content %}
+<h2>Lebensmittel hinzufügen</h2>
+<form method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required /><br />
+  <label for="calories">Kalorien:</label>
+  <input type="number" id="calories" name="calories" required /><br />
+  <label for="carbs">Kohlenhydrate:</label>
+  <input type="number" id="carbs" name="carbs" required /><br />
+  <label for="protein">Proteine:</label>
+  <input type="number" id="protein" name="protein" required /><br />
+  <label for="fat">Fette:</label>
+  <input type="number" id="fat" name="fat" required /><br />
+  <input type="submit" value="Hinzufügen" />
+</form>
+
+<h2>Lebensmittel Liste</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Kalorien</th>
+      <th>Kohlenhydrate</th>
+      <th>Proteine</th>
+      <th>Fette</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for food in foods %}
+    <tr>
+      <td>{{ food[1] }}</td>
+      <td>{{ food[2] }}</td>
+      <td>{{ food[3] }}</td>
+      <td>{{ food[4] }}</td>
+      <td>{{ food[5] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
