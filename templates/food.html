@@ -1,5 +1,4 @@
 {% extends "base.html" %} {% block content %}
-<h2>Lebensmittel hinzufügen</h2>
 <form method="post">
   <label for="name">Name:</label>
   <input type="text" id="name" name="name" required /><br />
@@ -11,30 +10,22 @@
   <input type="number" id="protein" name="protein" required /><br />
   <label for="fat">Fette:</label>
   <input type="number" id="fat" name="fat" required /><br />
-  <input type="submit" value="Hinzufügen" />
+  <input type="submit" value="Add" />
 </form>
+<h2>Food</h2>
 
-<h2>Lebensmittel Liste</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Kalorien</th>
-      <th>Kohlenhydrate</th>
-      <th>Proteine</th>
-      <th>Fette</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for food in foods %}
-    <tr>
-      <td>{{ food[1] }}</td>
-      <td>{{ food[2] }}</td>
-      <td>{{ food[3] }}</td>
-      <td>{{ food[4] }}</td>
-      <td>{{ food[5] }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<ul id="food-list">
+  {% for food in foods %}
+  <li data-id="{{ food[0] }}">
+    <p>{{ food[1] }}</p>
+    <p>Kalorien: {{ food[2] }}</p>
+    <p>Kohlenhydrate: {{ food[3] }}</p>
+    <p>Proteine: {{ food[4] }}</p>
+    <p>Fette: {{ food[5] }}</p>
+    <button class="delete-button">Delete</button>
+  </li>
+  {% endfor %}
+</ul>
+
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}

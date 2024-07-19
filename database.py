@@ -1,7 +1,14 @@
 import sqlite3
 
+DATABASE = 'myfitnessapp.db'
+
+def get_db_connection():
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    return conn
+
 def create_database():
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS food (
                     id INTEGER PRIMARY KEY,
@@ -16,7 +23,7 @@ def create_database():
                     date TEXT NOT NULL,
                     food_id INTEGER NOT NULL,
                     quantity INTEGER NOT NULL,
-                    FOREIGN KEY (food_id) REFERENCES food (id)
+                    FOREIGN KEY (food_id) REFERENCES food (id) ON DELETE CASCADE
                 )''')
     c.execute('''CREATE TABLE IF NOT EXISTS goals (
                     id INTEGER PRIMARY KEY,
@@ -36,32 +43,88 @@ def create_database():
                     reps INTEGER NOT NULL,
                     sets INTEGER NOT NULL,
                     kg REAL NOT NULL,
-                    FOREIGN KEY (exercise_id) REFERENCES exercises (id)
+                    FOREIGN KEY (exercise_id) REFERENCES exercises (id) ON DELETE CASCADE
                 )''')
     
-    # Add default exercises if the table is empty
     c.execute("SELECT COUNT(*) FROM exercises")
     if c.fetchone()[0] == 0:
         default_exercises = [
-            'Bench Press',
-            'Bicep Curls',
-            'Tricep Pushdown',
-            'Calf Raises',
-            'Squats',
-            'Lat Pulldown',
-            'Deadlift',
-            'Overhead Press',
-            'Lunges',
-            'Rows'
+             'Bench Press',
+        'Incline Bench Press',
+        'Decline Bench Press',
+        'Chest Flyes',
+        'Push-Ups',
+
+        # Schultern
+        'Overhead Press',
+        'Lateral Raises',
+        'Front Raises',
+        'Rear Delt Flyes',
+        'Arnold Press',
+
+        # Arme
+        # Bizeps
+        'Bicep Curls',
+        'Hammer Curls',
+        'Concentration Curls',
+        'Preacher Curls',
+        # Trizeps
+        'Tricep Pushdown',
+        'Tricep Dips',
+        'Skull Crushers',
+        'Overhead Tricep Extension',
+
+        # Rücken
+        'Lat Pulldown',
+        'Pull-Ups',
+        'Bent Over Rows',
+        'Deadlift',
+        'T-Bar Rows',
+        'Seated Rows',
+        'Face Pulls',
+        'Hyperextensions',
+
+        # Beine
+        # Quadrizeps
+        'Squats',
+        'Leg Press',
+        'Lunges',
+        'Bulgarian Split Squats',
+        # Hamstrings
+        'Deadlifts',
+        'Leg Curls',
+        'Romanian Deadlifts',
+        # Waden
+        'Calf Raises',
+        'Seated Calf Raises',
+
+        # Po
+        'Hip Thrusts',
+        'Glute Bridges',
+        'Donkey Kicks',
+        'Step-Ups',
+        'Cable Kickbacks',
+
+        # Bauch
+        'Crunches',
+        'Leg Raises',
+        'Planks',
+        'Russian Twists',
+        'Bicycle Crunches',
+        'Hanging Leg Raises',
+
+        # Ganzkörper
+        'Burpees',
+        'Kettlebell Swings',
+        'Battle Ropes'
         ]
-        for exercise in default_exercises:
-            c.execute("INSERT INTO exercises (name) VALUES (?)", (exercise,))
-    
-    conn.commit()
-    conn.close()
+        c.executemany("INSERT INTO exercises (name) VALUES (?)", [(exercise,) for exercise in default_exercises])
+
+
+
 
 def add_food(name, calories, carbs, protein, fat):
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute("INSERT INTO food (name, calories, carbs, protein, fat) VALUES (?, ?, ?, ?, ?)",
               (name, calories, carbs, protein, fat))
@@ -69,38 +132,22 @@ def add_food(name, calories, carbs, protein, fat):
     conn.close()
 
 def get_food():
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute("SELECT * FROM food")
     rows = c.fetchall()
     conn.close()
     return rows
 
-def add_entry(date, food_id, quantity):
-    conn = sqlite3.connect('myfitnessapp.db')
-    c = conn.cursor()
-    c.execute("INSERT INTO daily_entries (date, food_id, quantity) VALUES (?, ?, ?)",
-              (date, food_id, quantity))
-    conn.commit()
-    conn.close()
-
-def get_entries():
-    conn = sqlite3.connect('myfitnessapp.db')
-    c = conn.cursor()
-    c.execute("SELECT date, name, quantity, calories, carbs, protein, fat FROM daily_entries JOIN food ON daily_entries.food_id = food.id")
-    rows = c.fetchall()
-    conn.close()
-    return rows
-
 def add_exercise(name):
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute("INSERT INTO exercises (name) VALUES (?)", (name,))
     conn.commit()
     conn.close()
 
 def get_exercises():
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute("SELECT * FROM exercises")
     rows = c.fetchall()
@@ -108,7 +155,7 @@ def get_exercises():
     return rows
 
 def add_exercise_entry(date, exercise_id, reps, sets, kg):
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute("INSERT INTO exercise_entries (date, exercise_id, reps, sets, kg) VALUES (?, ?, ?, ?, ?)",
               (date, exercise_id, reps, sets, kg))
@@ -116,7 +163,7 @@ def add_exercise_entry(date, exercise_id, reps, sets, kg):
     conn.close()
 
 def get_exercise_entries():
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute("SELECT date, exercises.name, reps, sets, kg, (reps * sets * kg) as total_weight "
               "FROM exercise_entries JOIN exercises ON exercise_entries.exercise_id = exercises.id")
@@ -125,7 +172,7 @@ def get_exercise_entries():
     return rows
 
 def set_goals(calories, carbs, protein, fat):
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute("DELETE FROM goals")
     c.execute("INSERT INTO goals (calories, carbs, protein, fat) VALUES (?, ?, ?, ?)",
@@ -134,7 +181,7 @@ def set_goals(calories, carbs, protein, fat):
     conn.close()
 
 def get_goals():
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = get_db_connection()
     c = conn.cursor()
     c.execute("SELECT * FROM goals")
     goals = c.fetchone()
