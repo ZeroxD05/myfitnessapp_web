@@ -40,7 +40,7 @@ function slideGallery() {
   gallery.style.transform = `translateX(${offset}px)`;
 }
 
-setInterval(slideGallery, 3000); // Ändern Sie 3000 für die Geschwindigkeit der Animation (in Millisekunden)
+setInterval(slideGallery, 5000); // Ändern Sie 3000 für die Geschwindigkeit der Animation (in Millisekunden)
 
 // JavaScript für das Einfladen der Features beim Scrollen
 document.addEventListener("DOMContentLoaded", function () {

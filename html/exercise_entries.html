@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block content %}
+<form method="post">
+  <label for="exercise_id">Exercise:</label>
+  <select id="exercise_id" name="exercise_id" required>
+    <option value="" disabled selected>Choose an exercise</option>
+    {% for exercise in exercises %}
+    <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>
+    {% endfor %}</select
+  ><br />
+
+  <label for="reps">Reps:</label>
+  <input type="number" id="reps" name="reps" required /><br />
+
+  <label for="sets">Sets:</label>
+  <input type="number" id="sets" name="sets" required /><br />
+
+  <label for="kg">Weight (kg):</label>
+  <input type="number" id="kg" name="kg" step="0.1" required /><br />
+
+  <input type="submit" value="Add" />
+</form>
+
+<h2>Exercises</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Exercise</th>
+      <th>Reps</th>
+      <th>Sets</th>
+      <th>Weight (kg)</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entry in entries %}
+    <tr>
+      <td>{{ entry['date'] }}</td>
+      <td>{{ entry['name'] }}</td>
+      <td>{{ entry['reps'] }}</td>
+      <td>{{ entry['sets'] }}</td>
+      <td>{{ entry['kg'] }}</td>
+      <td>
+        <button class="delete-exercise" data-id="{{ entry['id'] }}">
+          Delete
+        </button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

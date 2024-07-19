@@ -1,0 +1,229 @@
+/* Globale Stile */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  background-color: #4169e1;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hauptbereich */
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Formulare */
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+form input[type="submit"] {
+  background-color: #4169e1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form input[type="submit"]:hover {
+  background-color: #3651b7;
+}
+
+/* Listen */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  background: white;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+/* Swipe-to-Delete */
+ul li .delete {
+  background: red;
+  color: white;
+  padding: 15px;
+  position: absolute;
+  right: -100px; /* Initially hidden */
+  transition: right 0.3s ease;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 20px;
+}
+
+ul li.swiped .delete {
+  right: 10px; /* Show when swiped */
+}
+
+ul li.swiped {
+  background-color: #ffdada; /* Visual feedback for swipe */
+}
+
+/* Flash Nachrichten */
+.flashes {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.flashes li {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.flashes .error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.flashes .success {
+  background-color: #d4edda;
+  color: #4169e1;
+}
+
+/* Tabelle */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th,
+table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #4169e1;
+  color: white;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Goal Box */
+.goal-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.goal-box p {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 18px;
+}
+
+.goal-box p strong {
+  color: #4caf50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav a {
+    display: block;
+    margin: 10px 0;
+    font-size: 18px;
+  }
+
+  form input[type="submit"] {
+    width: 100%;
+  }
+
+  .goal-box {
+    padding: 15px;
+  }
+
+  .goal-box p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  form {
+    padding: 15px;
+  }
+
+  form label {
+    margin: 8px 0 4px;
+  }
+
+  form input[type="submit"] {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .goal-box {
+    padding: 10px;
+  }
+
+  .goal-box p {
+    font-size: 14px;
+  }
+}
