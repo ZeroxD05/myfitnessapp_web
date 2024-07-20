@@ -12,8 +12,8 @@
   <input type="number" id="fat" name="fat" required /><br />
   <input type="submit" value="Add" />
 </form>
-<h2>Food</h2>
 
+<h2>Food</h2>
 <ul id="food-list">
   {% for food in foods %}
   <li data-id="{{ food[0] }}">
@@ -22,7 +22,7 @@
     <p>Kohlenhydrate: {{ food[3] }}</p>
     <p>Proteine: {{ food[4] }}</p>
     <p>Fette: {{ food[5] }}</p>
-    <button class="delete-button" data-id="{{ food[0] }}">Delete</button>
+    <button class="delete-food" data-id="{{ food[0] }}">Delete</button>
   </li>
   {% endfor %}
 </ul>

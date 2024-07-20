@@ -47,29 +47,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".delete-button").forEach(function (button) {
-    button.addEventListener("click", function () {
-      var itemId = this.getAttribute("data-id");
-
-      fetch(`/delete_food/${itemId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            var element = document.querySelector(`li[data-id="${itemId}"]`);
-            if (element) {
-              element.parentNode.removeChild(element);
-            }
-          } else {
-            console.error("Fehler beim Löschen des Lebensmittels.");
-          }
-        })
-        .catch((error) => console.error("Fehler:", error));
-    });
-  });
-});

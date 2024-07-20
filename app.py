@@ -106,10 +106,11 @@ def delete_food(item_id):
 
     # Löschen des Lebensmittels
     c.execute("DELETE FROM food WHERE id = ?", (item_id,))
+
     conn.commit()
     conn.close()
 
-    return jsonify({'result': 'success'}), 204
+    return '', 204
 
 @app.route('/delete_exercise_entry/<int:entry_id>', methods=['DELETE'])
 def delete_exercise_entry(entry_id):
@@ -118,10 +119,11 @@ def delete_exercise_entry(entry_id):
 
     # Löschen des Übungseintrags
     c.execute("DELETE FROM exercise_entries WHERE id = ?", (entry_id,))
+
     conn.commit()
     conn.close()
 
-    return jsonify({'result': 'success'}), 204
+    return '', 204
 
 if __name__ == '__main__':
     app.run(debug=True)

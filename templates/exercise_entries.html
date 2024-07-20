@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
+
+{% block content %}
 <form method="post">
   <label for="exercise_id">Exercise:</label>
   <select id="exercise_id" name="exercise_id" required>
@@ -22,33 +24,40 @@
 </form>
 
 <h2>Exercises</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Exercise</th>
-      <th>Reps</th>
-      <th>Sets</th>
-      <th>Weight (kg)</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for entry in entries %}
-    <tr>
-      <td>{{ entry['date'] }}</td>
-      <td>{{ entry['name'] }}</td>
-      <td>{{ entry['reps'] }}</td>
-      <td>{{ entry['sets'] }}</td>
-      <td>{{ entry['kg'] }}</td>
-      <td>
-        <button class="delete-exercise" data-id="{{ entry['id'] }}">
-          Delete
-        </button>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div id="exercise-list">
+  {% set current_date = '' %}
+  {% for entry in entries %}
+    {% if entry['date'] != current_date %}
+      {% if current_date != '' %}
+        </div> <!-- End of previous day's group -->
+        <hr class="date-divider">
+      {% endif %}
+      <div class="date-header">{{ entry['date'] }}</div>
+      <div class="exercise-group"> <!-- Start new day's group -->
+      {% set current_date = entry['date'] %}
+    {% endif %}
+    <div class="exercise-entry">
+      <div class="exercise-detail">
+        <strong>Exercise:</strong> {{ entry['name'] }}
+      </div>
+      <div class="exercise-detail">
+        <strong>Reps:</strong> {{ entry['reps'] }}
+      </div>
+      <div class="exercise-detail">
+        <strong>Sets:</strong> {{ entry['sets'] }}
+      </div>
+      <div class="exercise-detail">
+        <strong>Weight (kg):</strong> {{ entry['kg'] }}
+      </div>
+      <div class="exercise-detail">
+        <button class="delete-exercise" data-id="{{ entry['id'] }}">Delete</button>
+      </div>
+    </div>
+  {% endfor %}
+  {% if current_date != '' %}
+    </div> <!-- End of the last day's group -->
+  {% endif %}
+</div>
+
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}
