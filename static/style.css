@@ -231,6 +231,99 @@ table tr:nth-child(even) {
   color: #4caf50;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 300px; /* Feste Breite für den Container */
+  gap: 2vh;
+}
+
+#search-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px; /* Abstand zur Suchleiste */
+}
+
+#search-button:hover {
+  background-color: #0056b3;
+}
+
+#search-input {
+  border: 1px solid #ccc; /* 1px Umrandung hinzufügen */
+  padding: 10px;
+  border-radius: 5px;
+  flex: 1;
+}
+
+.suggestions-container {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  z-index: 1000;
+  margin-top: 10px; /* Abstand zu den Ergebnissen */
+}
+
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.results-container {
+  display: none; /* Standardmäßig ausblenden */
+  margin-top: 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative; /* Für die Positionierung des Delete-Buttons */
+}
+.results-container h2 {
+  margin-top: 0;
+}
+
+.results-container p {
+  margin: 5px 0;
+}
+
+.delete-food {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-food:hover {
+  background-color: #c82333;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   nav a {

@@ -1,14 +1,26 @@
 {% extends "base.html" %} {% block content %}
+
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Food..." />
+  <button id="search-button">Add</button>
+</div>
+
+<div id="suggestions" class="suggestions-container">
+  <!-- Autovervollständigungsvorschläge werden hier angezeigt -->
+</div>
+<br />
+<br />
+<br />
 <form method="post">
   <label for="name">Name:</label>
   <input type="text" id="name" name="name" required /><br />
-  <label for="calories">Kalorien:</label>
+  <label for="calories">Calories:</label>
   <input type="number" id="calories" name="calories" required /><br />
-  <label for="carbs">Kohlenhydrate:</label>
+  <label for="carbs">Carbs:</label>
   <input type="number" id="carbs" name="carbs" required /><br />
-  <label for="protein">Proteine:</label>
+  <label for="protein">Protein:</label>
   <input type="number" id="protein" name="protein" required /><br />
-  <label for="fat">Fette:</label>
+  <label for="fat">Fat:</label>
   <input type="number" id="fat" name="fat" required /><br />
   <input type="submit" value="Add" />
 </form>
@@ -18,14 +30,19 @@
   {% for food in foods %}
   <li data-id="{{ food[0] }}">
     <p>{{ food[1] }}</p>
-    <p>Kalorien: {{ food[2] }}</p>
-    <p>Kohlenhydrate: {{ food[3] }}</p>
-    <p>Proteine: {{ food[4] }}</p>
-    <p>Fette: {{ food[5] }}</p>
+    <p>Calories: {{ food[2] }}</p>
+    <p>Carbs: {{ food[3] }}</p>
+    <p>Protein: {{ food[4] }}</p>
+    <p>Fat: {{ food[5] }}</p>
     <button class="delete-food" data-id="{{ food[0] }}">Delete</button>
   </li>
   {% endfor %}
 </ul>
+
+<div id="results" class="results-container">
+  <!-- Der Delete-Button wird hier dynamisch eingefügt -->
+  <!-- Ergebnisse werden hier angezeigt -->
+</div>
 
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}
