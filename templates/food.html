@@ -22,7 +22,7 @@
     <p>Kohlenhydrate: {{ food[3] }}</p>
     <p>Proteine: {{ food[4] }}</p>
     <p>Fette: {{ food[5] }}</p>
-    <button class="delete-button">Delete</button>
+    <button class="delete-button" data-id="{{ food[0] }}">Delete</button>
   </li>
   {% endfor %}
 </ul>

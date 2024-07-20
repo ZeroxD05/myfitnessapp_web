@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from database import create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals
 from datetime import datetime
 import sqlite3
@@ -106,36 +106,22 @@ def delete_food(item_id):
 
     # Löschen des Lebensmittels
     c.execute("DELETE FROM food WHERE id = ?", (item_id,))
-
     conn.commit()
     conn.close()
 
-    return '', 204
+    return jsonify({'result': 'success'}), 204
+
+@app.route('/delete_exercise_entry/<int:entry_id>', methods=['DELETE'])
+def delete_exercise_entry(entry_id):
+    conn = sqlite3.connect('myfitnessapp.db')
+    c = conn.cursor()
+
+    # Löschen des Übungseintrags
+    c.execute("DELETE FROM exercise_entries WHERE id = ?", (entry_id,))
+    conn.commit()
+    conn.close()
+
+    return jsonify({'result': 'success'}), 204
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-@app.route('/exercise_entries', methods=['GET', 'POST'])
-def exercise_entries():
-    if request.method == 'POST':
-        date_entry = datetime.now().strftime('%Y-%m-%d')
-        exercise_id = request.form.get('exercise_id')
-        reps = request.form.get('reps')
-        sets = request.form.get('sets')
-        kg = request.form.get('kg')
-
-        if not all([exercise_id, reps, sets, kg]):
-            flash("Bitte alle Felder ausfüllen", 'error')
-            return redirect(url_for('exercise_entries'))
-
-        try:
-            add_exercise_entry(date_entry, int(exercise_id), int(reps), int(sets), float(kg))
-            flash("Sportübung hinzugefügt", 'success')
-        except ValueError:
-            flash("Fehler beim Hinzufügen der Übung. Überprüfe die Eingaben.", 'error')
-        return redirect(url_for('exercise_entries'))
-
-    exercises = get_exercises()
-    entries = get_exercise_entries()
-    return render_template('exercise_entries.html', exercises=exercises, entries=entries)

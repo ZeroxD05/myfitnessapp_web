@@ -5,8 +5,9 @@
     <option value="" disabled selected>Choose an exercise</option>
     {% for exercise in exercises %}
     <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>
-    {% endfor %}</select
-  ><br />
+    {% endfor %}
+  </select>
+  <br />
 
   <label for="reps">Reps:</label>
   <input type="number" id="reps" name="reps" required /><br />
@@ -49,4 +50,5 @@
     {% endfor %}
   </tbody>
 </table>
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}
