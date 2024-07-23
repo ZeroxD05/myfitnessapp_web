@@ -26,6 +26,15 @@ header {
   border-bottom-right-radius: 80% 20px;
 }
 
+.headnav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5vw;
+}
+
 nav {
   display: flex;
   justify-content: space-evenly;

@@ -16,14 +16,19 @@
   </head>
   <body>
     <header>
-      <h1>MyFitnessApp</h1>
-
+      <div class="headnav">
+        <a href="{{ url_for('index') }}">
+          <i
+            class="bx bxs-home"
+            style="color: #ffffff; font-size: xx-large"
+          ></i>
+        </a>
+        <h1>        
+          <a href="{{ url_for('index') }}" style="text-decoration: none; color: #ffffff;">
+          MyFitnessApp</h1>
+      </div>
       <header>
         <nav>
-          <a href="{{ url_for('index') }}"
-            ><i class="bx bxs-home" style="color: #ffffff"></i
-          ></a>
-
           <a href="{{ url_for('food') }}">Food</a>
 
           <a href="{{ url_for('exercise_entries') }}">Excercise</a>
