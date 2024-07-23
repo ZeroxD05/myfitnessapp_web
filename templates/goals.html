@@ -1,4 +1,5 @@
 {% extends "base.html" %} {% block content %}
+
 <form method="post">
   <label for="gender">Gender:</label>
   <select id="gender" name="gender" required>
@@ -42,14 +43,29 @@
   <input type="submit" value="Set Goals" />
 </form>
 
-<h2>Current Goals</h2>
-{% if goals %}
-<div class="goal-box">
-  <p><strong>Calories:</strong> {{ goals[1] }} g</p>
-  <p><strong>Carbs:</strong> {{ goals[2] }} g</p>
-  <p><strong>Protein:</strong> {{ goals[3] }} g</p>
-  <p><strong>Fat:</strong> {{ goals[4] }} g</p>
+<!-- Toggle Button for Goals -->
+<div class="goals-container">
+  <button id="toggle-goals" class="toggle-button">Open</button>
+  <div id="goals-content" class="goals-content">
+    <h2>Current Goals</h2>
+    {% if goals %}
+    <div class="goal-box">
+      <p><strong>Calories:</strong> {{ goals[1] }} g</p>
+      <p><strong>Carbs:</strong> {{ goals[2] }} g</p>
+      <p><strong>Protein:</strong> {{ goals[3] }} g</p>
+      <p><strong>Fat:</strong> {{ goals[4] }} g</p>
+    </div>
+    {% else %}
+    <p>No goals set</p>
+    {% endif %}
+  </div>
+
+  <!-- Additional Button -->
+  <button id="additional-button" class="additional-button">
+    Additional Button
+  </button>
 </div>
-{% else %}
-<p>No goals set</p>
-{% endif %} {% endblock %}
+
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+
+{% endblock %}

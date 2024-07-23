@@ -452,3 +452,41 @@ table tr:nth-child(even) {
     font-size: 14px;
   }
 }
+
+/* Toggle Button Styles */
+.toggle-button {
+  background-color: #315195;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.toggle-button:hover {
+  background-color: #27408b;
+}
+
+/* Goals Content */
+.goals-content {
+  display: none; /* Initially hidden */
+  margin-top: 20px;
+}
+
+/* Additional Button */
+.additional-button {
+  background-color: #d01619;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.additional-button:hover {
+  background-color: #c8102e;
+}
