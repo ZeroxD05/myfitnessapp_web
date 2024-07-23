@@ -379,10 +379,18 @@ table tr:nth-child(even) {
   justify-content: space-evenly;
   align-items: center;
   text-align: center;
+  background-color: #dddddd;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 .image-advantag {
   flex-direction: column;
+  border-radius: 20px;
+}
+
+.image-rev-advan {
+  border-radius: 20px;
 }
 
 /* Animation */
