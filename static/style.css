@@ -1,17 +1,96 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
 }
 
 /* Globale Stile */
 body {
-  font-family: "Arial", sans-serif;
   background-color: #f4f4f4;
   color: #333;
   margin: 0;
   padding: 0;
+}
+
+/* Allgemeine Schriftgröße für die Eingabefelder */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea {
+  font-size: 16px; /* Setzt die Schriftgröße auf 16px */
+}
+
+/* Schriftgröße für Labels und Buttons */
+label,
+button {
+  font-size: 16px; /* Setzt die Schriftgröße auf 16px */
+}
+
+/* Sicherstellen, dass die Eingabefelder den verfügbaren Platz nutzen */
+input[type="text"],
+input[type="number"],
+input[type="password"],
+textarea {
+  width: 100%; /* Maximale Breite nutzen */
+  box-sizing: border-box; /* Padding und Border in der Breite enthalten */
+  padding: 10px;
+  margin-top: 5px;
+}
+
+/* Grundlegende Styles für das Layout */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+form input[type="submit"] {
+  background-color: #4169e1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+form input[type="submit"]:hover {
+  background-color: #3651b7;
+}
+
+/* Button Styles */
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
 
 /* Header */
@@ -21,7 +100,6 @@ header {
   padding: 15px 0;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
   border-bottom-left-radius: 80% 20px;
   border-bottom-right-radius: 80% 20px;
 }
@@ -30,8 +108,6 @@ header {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
-  text-align: center;
   gap: 5vw;
 }
 
@@ -95,45 +171,6 @@ main {
 
 .exercise-detail button {
   align-self: flex-start; /* Button am Anfang ausrichten */
-}
-
-/* Formulare */
-form {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-form label {
-  display: block;
-  margin: 10px 0 5px;
-}
-
-form input[type="text"],
-form input[type="number"],
-form select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
-
-form input[type="submit"] {
-  background-color: #4169e1;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-form input[type="submit"]:hover {
-  background-color: #3651b7;
 }
 
 /* Listen */
@@ -240,18 +277,18 @@ table tr:nth-child(even) {
   color: #4caf50;
 }
 
+/* Suchfeld */
 .search-container {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  align-items: start;
+  flex-direction: column;
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
-  width: 300px; /* Feste Breite für den Container */
-  gap: 2vh;
+  width: 350px; /* Feste Breite für den Container */
 }
 
 #search-button {
@@ -269,7 +306,7 @@ table tr:nth-child(even) {
 }
 
 #search-input {
-  border: 1px solid #ccc; /* 1px Umrandung hinzufügen */
+  border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
   flex: 1;
@@ -284,7 +321,7 @@ table tr:nth-child(even) {
   overflow-y: auto;
   position: absolute;
   z-index: 1000;
-  margin-top: 10px; /* Abstand zu den Ergebnissen */
+  margin-top: 10px;
 }
 
 .suggestion-item {
@@ -306,8 +343,9 @@ table tr:nth-child(even) {
   width: 100%;
   max-width: 600px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: relative; /* Für die Positionierung des Delete-Buttons */
+  position: relative;
 }
+
 .results-container h2 {
   margin-top: 0;
 }
@@ -333,14 +371,10 @@ table tr:nth-child(even) {
   background-color: #c82333;
 }
 
-.get-started {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  text-align: start;
-}
-
-.advantage {
+/* Flexbox Layouts */
+.get-started,
+.advantage,
+.image-advantag {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -348,13 +382,10 @@ table tr:nth-child(even) {
 }
 
 .image-advantag {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   flex-direction: column;
 }
 
+/* Animation */
 @keyframes slideInUp {
   0% {
     transform: translateY(100%);
