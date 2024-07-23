@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash
 from database import create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals
 from datetime import datetime
 import sqlite3
@@ -10,7 +10,7 @@ create_database()
 
 @app.route('/')
 def index():
-    return render_template('base.html')
+    return render_template('index.html')
 
 @app.route('/food', methods=['GET', 'POST'])
 def food():
@@ -38,7 +38,7 @@ def food():
 @app.route('/exercise_entries', methods=['GET', 'POST'])
 def exercise_entries():
     if request.method == 'POST':
-        date_entry = datetime.now().strftime('%Y-%m-%d')
+        date_entry = datetime.now().strftime('%y-%m-%d')
         exercise_id = request.form.get('exercise_id')
         reps = request.form.get('reps')
         sets = request.form.get('sets')
@@ -104,7 +104,6 @@ def delete_food(item_id):
     conn = sqlite3.connect('myfitnessapp.db')
     c = conn.cursor()
 
-    # Löschen des Lebensmittels
     c.execute("DELETE FROM food WHERE id = ?", (item_id,))
 
     conn.commit()
@@ -117,7 +116,6 @@ def delete_exercise_entry(entry_id):
     conn = sqlite3.connect('myfitnessapp.db')
     c = conn.cursor()
 
-    # Löschen des Übungseintrags
     c.execute("DELETE FROM exercise_entries WHERE id = ?", (entry_id,))
 
     conn.commit()

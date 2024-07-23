@@ -20,9 +20,13 @@
 
       <header>
         <nav>
+          <a href="{{ url_for('index') }}"
+            ><i class="bx bxs-home" style="color: #ffffff"></i
+          ></a>
+
           <a href="{{ url_for('food') }}">Food</a>
 
-          <a href="{{ url_for('exercise_entries') }}">Exercises</a>
+          <a href="{{ url_for('exercise_entries') }}">Excercise</a>
           <a href="{{ url_for('goals') }}">Goals</a>
         </nav>
       </header>
