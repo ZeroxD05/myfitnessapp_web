@@ -252,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
       healthBarContainer.style.display === ""
     ) {
       healthBarContainer.style.display = "block";
-      additionalButton.textContent = "Hide Health Bar";
+      additionalButton.textContent = "Hide kcal";
 
       // Beispielwerte für Testing, normalerweise bekommst du diese von deinem Backend oder User-Eingaben
       const dailyGoal = 2000; // Hier das tägliche Kalorienziel einfügen
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateHealthBar(dailyGoal, currentIntake);
     } else {
       healthBarContainer.style.display = "none";
-      additionalButton.textContent = "Show Health Bar";
+      additionalButton.textContent = "Show kcal";
     }
   }
 
