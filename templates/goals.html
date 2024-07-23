@@ -1,52 +1,58 @@
 {% extends "base.html" %} {% block content %}
 
-<form method="post">
-  <label for="gender">Gender:</label>
-  <select id="gender" name="gender" required>
-    <option value="male">Male</option>
-    <option value="female">Female</option></select
-  ><br />
+<!-- Toggle Button for Form -->
+<div class="form-container">
+  <button id="toggle-form" class="toggle-button">Set Goals</button>
+  <div id="form-content" class="form-content" style="display: none">
+    <form method="post">
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option></select
+      ><br />
 
-  <label for="age">Age:</label>
-  <input type="number" id="age" name="age" required min="1" /><br />
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required min="1" /><br />
 
-  <label for="weight">Weight (kg):</label>
-  <input
-    type="number"
-    id="weight"
-    name="weight"
-    required
-    min="1"
-    step="0.1"
-  /><br />
+      <label for="weight">Weight (kg):</label>
+      <input
+        type="number"
+        id="weight"
+        name="weight"
+        required
+        min="1"
+        step="0.1"
+      /><br />
 
-  <label for="height">Height (cm):</label>
-  <input type="number" id="height" name="height" required min="1" /><br />
+      <label for="height">Height (cm):</label>
+      <input type="number" id="height" name="height" required min="1" /><br />
 
-  <label for="activity_level">Activity Level:</label>
-  <select id="activity_level" name="activity_level" required>
-    <option value="1.2">Sedentary (little or no exercise)</option>
-    <option value="1.375">
-      Lightly active (light exercise/sports 1-3 days a week)
-    </option>
-    <option value="1.55">
-      Moderately active (moderate exercise/sports 3-5 days a week)
-    </option>
-    <option value="1.725">
-      Very active (hard exercise/sports 6-7 days a week)
-    </option>
-    <option value="1.9">
-      Super active (very hard exercise/physical job)
-    </option></select
-  ><br />
+      <label for="activity_level">Activity Level:</label>
+      <select id="activity_level" name="activity_level" required>
+        <option value="1.2">Sedentary (little or no exercise)</option>
+        <option value="1.375">
+          Lightly active (light exercise/sports 1-3 days a week)
+        </option>
+        <option value="1.55">
+          Moderately active (moderate exercise/sports 3-5 days a week)
+        </option>
+        <option value="1.725">
+          Very active (hard exercise/sports 6-7 days a week)
+        </option>
+        <option value="1.9">
+          Super active (very hard exercise/physical job)
+        </option></select
+      ><br />
 
-  <input type="submit" value="Set Goals" />
-</form>
+      <input type="submit" value="Set Goals" />
+    </form>
+  </div>
+</div>
 
 <!-- Toggle Button for Goals -->
 <div class="goals-container">
-  <button id="toggle-goals" class="toggle-button">Open</button>
-  <div id="goals-content" class="goals-content">
+  <button id="toggle-goals" class="toggle-button">Show Current Goals</button>
+  <div id="goals-content" class="goals-content" style="display: none">
     <h2>Current Goals</h2>
     {% if goals %}
     <div class="goal-box">
@@ -62,10 +68,24 @@
 
   <!-- Additional Button -->
   <button id="additional-button" class="additional-button">
-    Additional Button
+    Show Health Bar
   </button>
+
+  <!-- Health Bar Container (initial hidden) -->
+  <div
+    id="health-bar-container"
+    class="health-bar-container"
+    style="display: none"
+  >
+    <label for="health-bar">Daily Caloric Goal:</label>
+    <div id="health-bar" class="health-bar">
+      <div id="progress" class="progress"></div>
+    </div>
+    <p id="percentage" class="percentage">0%</p>
+  </div>
 </div>
 
+<!-- Link to external JavaScript file -->
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 
 {% endblock %}

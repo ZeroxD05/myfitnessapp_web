@@ -49,19 +49,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Toggle-Funktion für die Ziele
-  const toggleButton = document.querySelector(".toggle-button");
-  const goalsContent = document.querySelector(".goals-content");
+  // Toggle-Funktion für das Formular
+  const toggleFormButton = document.getElementById("toggle-form");
+  const formContent = document.getElementById("form-content");
 
-  if (toggleButton && goalsContent) {
-    toggleButton.addEventListener("click", function () {
+  if (toggleFormButton && formContent) {
+    toggleFormButton.addEventListener("click", function () {
+      if (
+        formContent.style.display === "none" ||
+        formContent.style.display === ""
+      ) {
+        formContent.style.display = "block";
+        toggleFormButton.textContent = "Hide Form";
+      } else {
+        formContent.style.display = "none";
+        toggleFormButton.textContent = "Set Goals";
+      }
+    });
+  }
+
+  // Toggle-Funktion für die Ziele
+  const toggleGoalsButton = document.getElementById("toggle-goals");
+  const goalsContent = document.getElementById("goals-content");
+
+  if (toggleGoalsButton && goalsContent) {
+    toggleGoalsButton.addEventListener("click", function () {
       if (
         goalsContent.style.display === "none" ||
         goalsContent.style.display === ""
       ) {
         goalsContent.style.display = "block";
+        toggleGoalsButton.textContent = "Hide Current Goals";
       } else {
         goalsContent.style.display = "none";
+        toggleGoalsButton.textContent = "Show Current Goals";
       }
     });
   }
@@ -188,4 +209,76 @@ document.addEventListener("DOMContentLoaded", function () {
     resultsContainer.style.display = "none"; // Verstecke den Ergebnisse-Container
     localStorage.removeItem("searchQuery"); // Entferne die gespeicherte Suchanfrage
   });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Initialisiere den Zustand
+  const additionalButton = document.querySelector("#additional-button");
+  const additionalContent = document.querySelector("#additional-content");
+
+  if (additionalButton && additionalContent) {
+    additionalButton.addEventListener("click", function () {
+      if (
+        additionalContent.style.display === "none" ||
+        additionalContent.style.display === ""
+      ) {
+        additionalContent.style.display = "block";
+        additionalButton.textContent = "Hide Additional Content"; // Optional: Button-Text ändern
+      } else {
+        additionalContent.style.display = "none";
+        additionalButton.textContent = "Show Additional Content"; // Optional: Button-Text ändern
+      }
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const additionalButton = document.querySelector("#additional-button");
+  const healthBarContainer = document.querySelector("#health-bar-container");
+  const progress = document.querySelector("#progress");
+  const percentage = document.querySelector("#percentage");
+
+  // Funktion zum Aktualisieren der Gesundheitsleiste
+  function updateHealthBar(dailyGoal, currentIntake) {
+    const percentageValue = (currentIntake / dailyGoal) * 100;
+    progress.style.width = `${percentageValue}%`;
+    percentage.textContent = `${Math.round(percentageValue)}%`;
+  }
+
+  // Funktion zum Umschalten der Gesundheitsleiste
+  function toggleHealthBar() {
+    if (
+      healthBarContainer.style.display === "none" ||
+      healthBarContainer.style.display === ""
+    ) {
+      healthBarContainer.style.display = "block";
+      additionalButton.textContent = "Hide Health Bar";
+
+      // Beispielwerte für Testing, normalerweise bekommst du diese von deinem Backend oder User-Eingaben
+      const dailyGoal = 2000; // Hier das tägliche Kalorienziel einfügen
+      const currentIntake = 800; // Hier die aktuelle Kalorienaufnahme einfügen
+
+      updateHealthBar(dailyGoal, currentIntake);
+    } else {
+      healthBarContainer.style.display = "none";
+      additionalButton.textContent = "Show Health Bar";
+    }
+  }
+
+  if (additionalButton) {
+    additionalButton.addEventListener("click", toggleHealthBar);
+  }
+});
+
+// Beispiel für die Verarbeitung eines Formulars
+document.querySelector("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  // Hole die Werte aus dem Formular
+  const dailyGoal = parseFloat(document.querySelector("#daily-goal").value); // Beispiel-ID für das Kalorienziel-Feld
+  const currentIntake = parseFloat(
+    document.querySelector("#current-intake").value
+  ); // Beispiel-ID für aktuelle Kalorienaufnahme
+
+  updateHealthBar(dailyGoal, currentIntake);
 });
