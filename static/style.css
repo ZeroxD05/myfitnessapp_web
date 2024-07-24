@@ -14,32 +14,28 @@ body {
   padding: 0;
 }
 
-/* Allgemeine Schriftgröße für die Eingabefelder */
 input[type="text"],
 input[type="number"],
 input[type="password"],
 textarea {
-  font-size: 16px; /* Setzt die Schriftgröße auf 16px */
+  font-size: 16px;
 }
 
-/* Schriftgröße für Labels und Buttons */
 label,
 button {
-  font-size: 16px; /* Setzt die Schriftgröße auf 16px */
+  font-size: 16px;
 }
 
-/* Sicherstellen, dass die Eingabefelder den verfügbaren Platz nutzen */
 input[type="text"],
 input[type="number"],
 input[type="password"],
 textarea {
-  width: 100%; /* Maximale Breite nutzen */
-  box-sizing: border-box; /* Padding und Border in der Breite enthalten */
+  width: 100%;
+  box-sizing: border-box;
   padding: 10px;
   margin-top: 5px;
 }
 
-/* Grundlegende Styles für das Layout */
 form {
   max-width: 600px;
   margin: 0 auto;
@@ -78,7 +74,6 @@ form input[type="submit"]:hover {
   background-color: #3651b7;
 }
 
-/* Button Styles */
 button {
   margin-top: 10px;
   padding: 10px 20px;
@@ -93,7 +88,6 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Header */
 header {
   background-color: #4169e1;
   color: white;
@@ -132,7 +126,6 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* Hauptbereich */
 main {
   padding: 20px;
   max-width: 1200px;
@@ -142,7 +135,7 @@ main {
 #exercise-list {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Abstand zwischen den Einträgen */
+  gap: 10px;
 }
 
 .date-header {
@@ -172,10 +165,9 @@ main {
 }
 
 .exercise-detail button {
-  align-self: flex-start; /* Button am Anfang ausrichten */
+  align-self: flex-start;
 }
 
-/* Listen */
 ul {
   list-style-type: none;
   padding: 0;
@@ -192,13 +184,12 @@ ul li {
   transition: background-color 0.3s ease;
 }
 
-/* Swipe-to-Delete */
 ul li .delete {
   background: red;
   color: white;
   padding: 15px;
   position: absolute;
-  right: -100px; /* Initially hidden */
+  right: -100px;
   transition: right 0.3s ease;
   border-radius: 4px;
   cursor: pointer;
@@ -207,14 +198,13 @@ ul li .delete {
 }
 
 ul li.swiped .delete {
-  right: 10px; /* Show when swiped */
+  right: 10px;
 }
 
 ul li.swiped {
-  background-color: #ffdada; /* Visual feedback for swipe */
+  background-color: #ffdada;
 }
 
-/* Flash Nachrichten */
 .flashes {
   list-style-type: none;
   padding: 0;
@@ -237,7 +227,6 @@ ul li.swiped {
   color: #4169e1;
 }
 
-/* Tabelle */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -260,7 +249,6 @@ table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* Goal Box */
 .goal-box {
   background-color: white;
   padding: 20px;
@@ -279,7 +267,6 @@ table tr:nth-child(even) {
   color: #4caf50;
 }
 
-/* Suchfeld */
 .search-container {
   display: flex;
   align-items: start;
@@ -290,7 +277,7 @@ table tr:nth-child(even) {
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
-  width: 350px; /* Feste Breite für den Container */
+  width: 350px;
 }
 
 #search-button {
@@ -300,7 +287,7 @@ table tr:nth-child(even) {
   background-color: #007bff;
   color: white;
   cursor: pointer;
-  margin-right: 10px; /* Abstand zur Suchleiste */
+  margin-right: 10px;
 }
 
 #search-button:hover {
@@ -336,7 +323,7 @@ table tr:nth-child(even) {
 }
 
 .results-container {
-  display: none; /* Standardmäßig ausblenden */
+  display: none;
   margin-top: 20px;
   background: #fff;
   border: 1px solid #ccc;
@@ -373,7 +360,6 @@ table tr:nth-child(even) {
   background-color: #c82333;
 }
 
-/* Flexbox Layouts */
 .get-started,
 .advantage,
 .image-advantag {
@@ -395,7 +381,6 @@ table tr:nth-child(even) {
   border-radius: 20px;
 }
 
-/* Animation */
 @keyframes slideInUp {
   0% {
     transform: translateY(100%);
@@ -411,7 +396,6 @@ table tr:nth-child(even) {
   animation: slideInUp 0.6s ease-out forwards;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   nav a {
     display: block;
@@ -455,7 +439,6 @@ table tr:nth-child(even) {
   }
 }
 
-/* Toggle Button Styles */
 .toggle-button {
   background-color: #315195;
   color: #ffffff;
@@ -471,13 +454,11 @@ table tr:nth-child(even) {
   background-color: #27408b;
 }
 
-/* Goals Content */
 .goals-content {
-  display: none; /* Initially hidden */
+  display: none;
   margin-top: 20px;
 }
 
-/* Additional Button */
 .additional-button {
   background-color: #d01619;
   color: #ffffff;
@@ -509,7 +490,7 @@ table tr:nth-child(even) {
 .progress {
   height: 100%;
   background-color: #76c7c0;
-  width: 0%; /* Anfangswert, wird per JavaScript geändert */
+  width: 0%;
   transition: width 0.5s ease;
 }
 

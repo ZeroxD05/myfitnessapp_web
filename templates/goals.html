@@ -1,93 +1,53 @@
 {% extends "base.html" %} {% block content %}
 
-<!-- Toggle Button for Form -->
-<div class="form-container">
-  <button id="toggle-form" class="toggle-button">
-    Set Goals <i class="bx bx-chevron-down"></i>
-  </button>
-  <div id="form-content" class="form-content" style="display: none">
-    <form method="post">
-      <label for="gender">Gender:</label>
-      <select id="gender" name="gender" required>
-        <option value="male">Male</option>
-        <option value="female">Female</option></select
-      ><br />
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" required min="1" /><br />
-
-      <label for="weight">Weight (kg):</label>
-      <input
-        type="number"
-        id="weight"
-        name="weight"
-        required
-        min="1"
-        step="0.1"
-      /><br />
-
-      <label for="height">Height (cm):</label>
-      <input type="number" id="height" name="height" required min="1" /><br />
-
-      <label for="activity_level">Activity Level:</label>
-      <select id="activity_level" name="activity_level" required>
-        <option value="1.2">Sedentary (little or no exercise)</option>
-        <option value="1.375">
-          Lightly active (light exercise/sports 1-3 days a week)
-        </option>
-        <option value="1.55">
-          Moderately active (moderate exercise/sports 3-5 days a week)
-        </option>
-        <option value="1.725">
-          Very active (hard exercise/sports 6-7 days a week)
-        </option>
-        <option value="1.9">
-          Super active (very hard exercise/physical job)
-        </option></select
-      ><br />
-
-      <input type="submit" value="Set Goals" />
-    </form>
-  </div>
-</div>
-
-<!-- Toggle Button for Goals -->
-<div class="goals-container">
-  <button id="toggle-goals" class="toggle-button">
-    Show Current Goals <i class="bx bx-chevron-down"></i>
-  </button>
-  <div id="goals-content" class="goals-content" style="display: none">
-    <h2>Current Goals</h2>
-    {% if goals %}
-    <div class="goal-box">
-      <p><strong>Calories:</strong> {{ goals[1] }} g</p>
-      <p><strong>Carbs:</strong> {{ goals[2] }} g</p>
-      <p><strong>Protein:</strong> {{ goals[3] }} g</p>
-      <p><strong>Fat:</strong> {{ goals[4] }} g</p>
-    </div>
-    {% else %}
-    <p>No goals set</p>
-    {% endif %}
-  </div>
-  <br />
-  <!-- Additional Button -->
-  <button id="additional-button" class="additional-button">
-    Show kcal <i class="bx bx-chevron-down"></i>
-  </button>
 
   <!-- Health Bar Container (initial hidden) -->
-  <div
-    id="health-bar-container"
-    class="health-bar-container"
-    style="display: none"
-  >
-    <label for="health-bar">Daily kcal Goal:</label>
+  <div class="health-bar-container" id="health-bar-container">
     <div id="health-bar" class="health-bar">
       <div id="progress" class="progress"></div>
     </div>
-    <p id="percentage" class="percentage">0%</p>
+    <div class="percentage">
+      <span id="calories-consumed">0 kcal</span> /
+      <span id="calories-goal"></span> (<span id="percentage">0%</span
+      >)
+    </div>
+  </div>
+  <div class="input-section">
+    <input type="number" id="calorie-input" placeholder="Enter calories" />
+    <button id="add-calories-btn">Add Calories</button>
+  </div>
+  <div class="calorie-calculator">
+    <h2>Calorie Calculator</h2>
+    <input type="number" id="age" placeholder="Age" />
+    <input type="number" id="weight" placeholder="Weight (kg)" />
+    <input type="number" id="height" placeholder="Height (cm)" />
+    <br /><br />
+    <select id="activity-level">
+      <option value="1.2">Sedentary</option>
+      <option value="1.375">Lightly active</option>
+      <option value="1.55">Moderately active</option>
+      <option value="1.725">Very active</option>
+      <option value="1.9">Super active</option>
+    </select>
+    <br />
+    <button id="calculate-btn">Calculate</button>
   </div>
 </div>
+
+
+
+<!-- Toggle Button for Goals
+<div class="goals-container">
+  <button id="toggle-goals" class="toggle-button">
+    Friends <i class="bx bx-chevron-down"></i>
+  </button>
+  <div id="goals-content" class="goals-content" style="display: none">
+    More Content
+  </div>
+  <br />
+-->
+
 
 <!-- Link to external JavaScript file -->
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>

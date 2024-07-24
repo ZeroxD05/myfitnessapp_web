@@ -238,54 +238,74 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-
 document.addEventListener("DOMContentLoaded", function () {
-  const additionalButton = document.querySelector("#additional-button");
-  const healthBarContainer = document.querySelector("#health-bar-container");
-  const progress = document.querySelector("#progress");
-  const percentage = document.querySelector("#percentage");
+  const progressBar = document.getElementById("progress");
+  const calorieInput = document.getElementById("calorie-input");
+  const addCaloriesBtn = document.getElementById("add-calories-btn");
+  const caloriesConsumedElement = document.getElementById("calories-consumed");
+  const caloriesGoalElement = document.getElementById("calories-goal");
+  const percentageElement = document.getElementById("percentage");
+  const calculateBtn = document.getElementById("calculate-btn");
+  const ageInput = document.getElementById("age");
+  const weightInput = document.getElementById("weight");
+  const heightInput = document.getElementById("height");
+  const activityLevelInput = document.getElementById("activity-level");
+  const additionalButton = document.getElementById("additional-button");
+  const goal = 2000; // Calorie goal
+  let caloriesConsumed = 0;
 
-  // Funktion zum Aktualisieren der Gesundheitsleiste
-  function updateHealthBar(dailyGoal, currentIntake) {
-    const percentageValue = (currentIntake / dailyGoal) * 100;
-    progress.style.width = `${percentageValue}%`;
-    percentage.textContent = `${Math.round(percentageValue)}%`;
+  // Function to update the health bar
+  function updateHealthBar() {
+    const percentage = (caloriesConsumed / goal) * 100;
+    progressBar.style.width = `${Math.min(percentage, 100)}%`; // Cap at 100%
+    caloriesConsumedElement.textContent = `${caloriesConsumed} kcal`;
+    percentageElement.textContent = `${Math.min(percentage, 100).toFixed(2)}%`;
   }
 
-  // Funktion zum Umschalten der Gesundheitsleiste
-  function toggleHealthBar() {
+  // Add calories event
+  addCaloriesBtn.addEventListener("click", function () {
+    const calorieValue = parseInt(calorieInput.value);
+    if (!isNaN(calorieValue)) {
+      caloriesConsumed += calorieValue;
+      updateHealthBar();
+    }
+  });
+
+  // Calculate BMR and update the goal
+  calculateBtn.addEventListener("click", function () {
+    const age = parseInt(ageInput.value);
+    const weight = parseFloat(weightInput.value);
+    const height = parseFloat(heightInput.value);
+    const activityLevel = parseFloat(activityLevelInput.value);
+    if (
+      !isNaN(age) &&
+      !isNaN(weight) &&
+      !isNaN(height) &&
+      !isNaN(activityLevel)
+    ) {
+      const bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      const dailyCalories = bmr * activityLevel;
+      caloriesGoalElement.textContent = `${Math.round(dailyCalories)} kcal`;
+      goal = dailyCalories;
+      updateHealthBar();
+    }
+  });
+
+  // Toggle additional information
+  additionalButton.addEventListener("click", function () {
+    const healthBarContainer = document.getElementById("health-bar-container");
     if (
       healthBarContainer.style.display === "none" ||
-      healthBarContainer.style.display === ""
+      !healthBarContainer.style.display
     ) {
       healthBarContainer.style.display = "block";
-      additionalButton.innerHTML =
-        "Hide kcal  <i class='bx bx-chevron-up' ></i>";
-      // Beispielwerte für Testing, normalerweise bekommst du diese von deinem Backend oder User-Eingaben
-      const dailyGoal = 2000; // Hier das tägliche Kalorienziel einfügen
-      const currentIntake = 800; // Hier die aktuelle Kalorienaufnahme einfügen
-
-      updateHealthBar(dailyGoal, currentIntake);
+      additionalButton.textContent = "Hide kcal";
     } else {
       healthBarContainer.style.display = "none";
-      additionalButton.innerHTML =
-        "Show kcal <i class='bx bx-chevron-down'></i>";
+      additionalButton.textContent = "Show kcal";
     }
-  }
+  });
 
-  if (additionalButton) {
-    additionalButton.addEventListener("click", toggleHealthBar);
-  }
-});
-// Beispiel für die Verarbeitung eines Formulars
-document.querySelector("form").addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  // Hole die Werte aus dem Formular
-  const dailyGoal = parseFloat(document.querySelector("#daily-goal").value); // Beispiel-ID für das Kalorienziel-Feld
-  const currentIntake = parseFloat(
-    document.querySelector("#current-intake").value
-  ); // Beispiel-ID für aktuelle Kalorienaufnahme
-
-  updateHealthBar(dailyGoal, currentIntake);
+  // Initial update
+  updateHealthBar();
 });
