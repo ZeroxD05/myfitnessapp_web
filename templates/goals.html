@@ -1,55 +1,21 @@
 {% extends "base.html" %} {% block content %}
 
-
-
-  <!-- Health Bar Container (initial hidden) -->
-  <div class="health-bar-container" id="health-bar-container">
-    <div id="health-bar" class="health-bar">
-      <div id="progress" class="progress"></div>
-    </div>
-    <div class="percentage">
-      <span id="calories-consumed">0 kcal</span> /
-      <span id="calories-goal"></span> (<span id="percentage">0%</span
-      >)
-    </div>
-  </div>
-  <div class="input-section">
-    <input type="number" id="calorie-input" placeholder="Enter calories" />
-    <button id="add-calories-btn">Add Calories</button>
-  </div>
-  <div class="calorie-calculator">
-    <h2>Calorie Calculator</h2>
-    <input type="number" id="age" placeholder="Age" />
-    <input type="number" id="weight" placeholder="Weight (kg)" />
-    <input type="number" id="height" placeholder="Height (cm)" />
-    <br /><br />
-    <select id="activity-level">
-      <option value="1.2">Sedentary</option>
-      <option value="1.375">Lightly active</option>
-      <option value="1.55">Moderately active</option>
-      <option value="1.725">Very active</option>
-      <option value="1.9">Super active</option>
-    </select>
-    <br />
-    <button id="calculate-btn">Calculate</button>
-  </div>
-</div>
-
-
-
-<!-- Toggle Button for Goals
+<!-- Toggle Button for Goals-->
 <div class="goals-container">
   <button id="toggle-goals" class="toggle-button">
     Friends <i class="bx bx-chevron-down"></i>
   </button>
-  <div id="goals-content" class="goals-content" style="display: none">
+  <div
+    id="goals-content"
+    class="goals-content"
+    style="display: none; color: white"
+  >
     More Content
   </div>
   <br />
--->
 
+  <!-- Link to external JavaScript file -->
+  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 
-<!-- Link to external JavaScript file -->
-<script src="{{ url_for('static', filename='scripts.js') }}"></script>
-
-{% endblock %}
+  {% endblock %}
+</div>

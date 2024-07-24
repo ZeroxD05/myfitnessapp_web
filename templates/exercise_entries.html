@@ -23,8 +23,8 @@
   <input type="submit" value="+" />
 </form>
 
-<h2>Exercises</h2>
-<div id="exercise-list">
+<h2 style="color: white;">Exercises</h2>
+<div style="color: black;" id="exercise-list">
   {% set current_date = '' %}
   {% for entry in entries %}
     {% if entry['date'] != current_date %}
@@ -32,7 +32,7 @@
         </div> <!-- End of previous day's group -->
         <hr class="date-divider">
       {% endif %}
-      <div class="date-header">{{ entry['date'] }}</div>
+      <div style="color: white;" class="date-header">{{ entry['date'] }}</div>
       <div class="exercise-group"> <!-- Start new day's group -->
       {% set current_date = entry['date'] %}
     {% endif %}

@@ -83,31 +83,16 @@ document.addEventListener("DOMContentLoaded", function () {
       ) {
         goalsContent.style.display = "block";
         toggleGoalsButton.innerHTML =
-          "Hide Current Goals <i class='bx bx-chevron-up' ></i>";
+          "Friends <i class='bx bx-chevron-up' ></i>";
       } else {
         goalsContent.style.display = "none";
         toggleGoalsButton.innerHTML =
-          "Show Current Goals <i class='bx bx-chevron-down'></i>";
+          "Friends <i class='bx bx-chevron-down'></i>";
       }
     });
   }
 
   // Such- und Ergebnislogik
-  const nutritionData = {
-    hamburger: {
-      calories: 250,
-      protein: 12,
-      fat: 12,
-      carbohydrates: 30,
-    },
-    pommes: {
-      calories: 340,
-      protein: 3,
-      fat: 16,
-      carbohydrates: 53,
-    },
-    // Weitere Daten hinzufügen, falls nötig
-  };
 
   const searchInput = document.getElementById("search-input");
   const suggestionsContainer = document.getElementById("suggestions");
@@ -261,7 +246,6 @@ document.addEventListener("DOMContentLoaded", function () {
     caloriesConsumedElement.textContent = `${caloriesConsumed} kcal`;
     percentageElement.textContent = `${Math.min(percentage, 100).toFixed(2)}%`;
   }
-
   // Add calories event
   addCaloriesBtn.addEventListener("click", function () {
     const calorieValue = parseInt(calorieInput.value);
