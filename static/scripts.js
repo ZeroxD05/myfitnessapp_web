@@ -60,10 +60,13 @@ document.addEventListener("DOMContentLoaded", function () {
         formContent.style.display === ""
       ) {
         formContent.style.display = "block";
-        toggleFormButton.textContent = "Hide Form";
+
+        toggleFormButton.innerHTML =
+          "Hide Form <i class='bx bx-chevron-up' ></i>";
       } else {
         formContent.style.display = "none";
-        toggleFormButton.textContent = "Set Goals";
+        toggleFormButton.innerHTML =
+          "Set Goals <i class='bx bx-chevron-down'></i>";
       }
     });
   }
@@ -79,10 +82,12 @@ document.addEventListener("DOMContentLoaded", function () {
         goalsContent.style.display === ""
       ) {
         goalsContent.style.display = "block";
-        toggleGoalsButton.textContent = "Hide Current Goals";
+        toggleGoalsButton.innerHTML =
+          "Hide Current Goals <i class='bx bx-chevron-up' ></i>";
       } else {
         goalsContent.style.display = "none";
-        toggleGoalsButton.textContent = "Show Current Goals";
+        toggleGoalsButton.innerHTML =
+          "Show Current Goals <i class='bx bx-chevron-down'></i>";
       }
     });
   }
@@ -226,7 +231,9 @@ document.addEventListener("DOMContentLoaded", function () {
         additionalButton.textContent = "Hide Additional Content"; // Optional: Button-Text ändern
       } else {
         additionalContent.style.display = "none";
-        additionalButton.textContent = "Show Additional Content"; // Optional: Button-Text ändern
+        additionalButton.textContent = "Show Additional Content ";
+
+        // Optional: Button-Text ändern
       }
     });
   }
@@ -252,8 +259,8 @@ document.addEventListener("DOMContentLoaded", function () {
       healthBarContainer.style.display === ""
     ) {
       healthBarContainer.style.display = "block";
-      additionalButton.textContent = "Hide kcal";
-
+      additionalButton.innerHTML =
+        "Hide kcal  <i class='bx bx-chevron-up' ></i>";
       // Beispielwerte für Testing, normalerweise bekommst du diese von deinem Backend oder User-Eingaben
       const dailyGoal = 2000; // Hier das tägliche Kalorienziel einfügen
       const currentIntake = 800; // Hier die aktuelle Kalorienaufnahme einfügen
@@ -261,7 +268,8 @@ document.addEventListener("DOMContentLoaded", function () {
       updateHealthBar(dailyGoal, currentIntake);
     } else {
       healthBarContainer.style.display = "none";
-      additionalButton.textContent = "Show kcal";
+      additionalButton.innerHTML =
+        "Show kcal <i class='bx bx-chevron-down'></i>";
     }
   }
 
@@ -269,7 +277,6 @@ document.addEventListener("DOMContentLoaded", function () {
     additionalButton.addEventListener("click", toggleHealthBar);
   }
 });
-
 // Beispiel für die Verarbeitung eines Formulars
 document.querySelector("form").addEventListener("submit", function (event) {
   event.preventDefault();

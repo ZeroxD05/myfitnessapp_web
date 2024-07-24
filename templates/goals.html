@@ -2,7 +2,9 @@
 
 <!-- Toggle Button for Form -->
 <div class="form-container">
-  <button id="toggle-form" class="toggle-button">Set Goals</button>
+  <button id="toggle-form" class="toggle-button">
+    Set Goals <i class="bx bx-chevron-down"></i>
+  </button>
   <div id="form-content" class="form-content" style="display: none">
     <form method="post">
       <label for="gender">Gender:</label>
@@ -51,7 +53,9 @@
 
 <!-- Toggle Button for Goals -->
 <div class="goals-container">
-  <button id="toggle-goals" class="toggle-button">Show Current Goals</button>
+  <button id="toggle-goals" class="toggle-button">
+    Show Current Goals <i class="bx bx-chevron-down"></i>
+  </button>
   <div id="goals-content" class="goals-content" style="display: none">
     <h2>Current Goals</h2>
     {% if goals %}
@@ -67,7 +71,9 @@
   </div>
   <br />
   <!-- Additional Button -->
-  <button id="additional-button" class="additional-button">Show kcal</button>
+  <button id="additional-button" class="additional-button">
+    Show kcal <i class="bx bx-chevron-down"></i>
+  </button>
 
   <!-- Health Bar Container (initial hidden) -->
   <div
