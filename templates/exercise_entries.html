@@ -3,7 +3,7 @@
 {% block content %}
 <form method="post">
   <label for="exercise_id">Exercise:</label>
-  <select id="exercise_id" name="exercise_id" required>
+  <select style="background-color: #28344c; border: none; color: rgba(255, 255, 255, 0.562); " id="exercise_id" name="exercise_id" required>
     <option value="" disabled selected>Choose an exercise</option>
     {% for exercise in exercises %}
     <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>
@@ -11,7 +11,7 @@
   </select>
   <br />
 
-  <label for="reps">Reps:</label>
+  <label  for="reps">Reps:</label>
   <input type="number" id="reps" name="reps" required /><br />
 
   <label for="sets">Sets:</label>
