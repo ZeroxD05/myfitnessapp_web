@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
         .then((response) => {
           if (response.ok) {
-            var row = this.closest("tr");
+            var row = this.closest(".exercise-entry");
             if (row) {
               row.parentNode.removeChild(row);
             }
@@ -60,9 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
         formContent.style.display === ""
       ) {
         formContent.style.display = "block";
-
         toggleFormButton.innerHTML =
-          "Hide Form <i class='bx bx-chevron-up' ></i>";
+          "Hide Form <i class='bx bx-chevron-up'></i>";
       } else {
         formContent.style.display = "none";
         toggleFormButton.innerHTML =
@@ -83,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ) {
         goalsContent.style.display = "block";
         toggleGoalsButton.innerHTML =
-          "Friends <i class='bx bx-chevron-up' ></i>";
+          "Friends <i class='bx bx-chevron-up'></i>";
       } else {
         goalsContent.style.display = "none";
         toggleGoalsButton.innerHTML =
@@ -93,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Such- und Ergebnislogik
-
   const searchInput = document.getElementById("search-input");
   const suggestionsContainer = document.getElementById("suggestions");
   const resultsContainer = document.getElementById("results");
@@ -103,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
   deleteResultsButton.className = "delete-food";
   deleteResultsButton.textContent = "Delete";
 
-  // Funktion zum Initialisieren des Zustands
   function initializeState() {
     const savedQuery = localStorage.getItem("searchQuery");
     if (savedQuery) {
@@ -112,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Funktion zum Anzeigen von Vorschlägen
   function showSuggestions(value) {
     suggestionsContainer.innerHTML = "";
     if (value) {
@@ -134,7 +130,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Funktion zum Anzeigen von Ergebnissen
   function displayResults(query) {
     const lowerCaseQuery = query.toLowerCase();
     const data = nutritionData[lowerCaseQuery];
@@ -159,12 +154,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Funktion zur Formatierung des ersten Buchstabens
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  // Initialisiere den Zustand beim Laden der Seite
   initializeState();
 
   searchInput.addEventListener("input", (e) => {
@@ -193,37 +186,21 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.removeItem("searchQuery"); // Entferne die gespeicherte Suchanfrage
   });
 
-  // Event Listener für den Delete-Button
   deleteResultsButton.addEventListener("click", () => {
     resultsContainer.innerHTML = "";
     resultsContainer.style.display = "none"; // Verstecke den Ergebnisse-Container
     localStorage.removeItem("searchQuery"); // Entferne die gespeicherte Suchanfrage
   });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialisiere den Zustand
-  const additionalButton = document.querySelector("#additional-button");
-  const additionalContent = document.querySelector("#additional-content");
-
-  if (additionalButton && additionalContent) {
-    additionalButton.addEventListener("click", function () {
-      if (
-        additionalContent.style.display === "none" ||
-        additionalContent.style.display === ""
-      ) {
-        additionalContent.style.display = "block";
-        additionalButton.textContent = "Hide Additional Content"; // Optional: Button-Text ändern
-      } else {
-        additionalContent.style.display = "none";
-        additionalButton.textContent = "Show Additional Content ";
-
-        // Optional: Button-Text ändern
-      }
+  // Event Listener für den Hide-Button
+  const hideButtons = document.querySelectorAll(".exercise-entry button");
+  hideButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      this.closest(".exercise-entry").style.display = "none";
     });
-  }
-});
-document.addEventListener("DOMContentLoaded", function () {
+  });
+
+  // Progressbar und Kalorien-Berechnung
   const progressBar = document.getElementById("progress");
   const calorieInput = document.getElementById("calorie-input");
   const addCaloriesBtn = document.getElementById("add-calories-btn");
@@ -236,17 +213,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const heightInput = document.getElementById("height");
   const activityLevelInput = document.getElementById("activity-level");
   const additionalButton = document.getElementById("additional-button");
-  const goal = 2000; // Calorie goal
+  let goal = 2000; // Calorie goal
   let caloriesConsumed = 0;
 
-  // Function to update the health bar
   function updateHealthBar() {
     const percentage = (caloriesConsumed / goal) * 100;
     progressBar.style.width = `${Math.min(percentage, 100)}%`; // Cap at 100%
     caloriesConsumedElement.textContent = `${caloriesConsumed} kcal`;
     percentageElement.textContent = `${Math.min(percentage, 100).toFixed(2)}%`;
   }
-  // Add calories event
+
   addCaloriesBtn.addEventListener("click", function () {
     const calorieValue = parseInt(calorieInput.value);
     if (!isNaN(calorieValue)) {
@@ -255,7 +231,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Calculate BMR and update the goal
   calculateBtn.addEventListener("click", function () {
     const age = parseInt(ageInput.value);
     const weight = parseFloat(weightInput.value);
@@ -275,7 +250,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Toggle additional information
   additionalButton.addEventListener("click", function () {
     const healthBarContainer = document.getElementById("health-bar-container");
     if (
@@ -289,7 +263,4 @@ document.addEventListener("DOMContentLoaded", function () {
       additionalButton.textContent = "Show kcal";
     }
   });
-
-  // Initial update
-  updateHealthBar();
 });

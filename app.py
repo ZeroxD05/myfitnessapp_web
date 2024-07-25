@@ -103,24 +103,18 @@ def goals():
 def delete_food(item_id):
     conn = sqlite3.connect('myfitnessapp.db')
     c = conn.cursor()
-
     c.execute("DELETE FROM food WHERE id = ?", (item_id,))
-
     conn.commit()
     conn.close()
-
     return '', 204
 
 @app.route('/delete_exercise_entry/<int:entry_id>', methods=['DELETE'])
 def delete_exercise_entry(entry_id):
     conn = sqlite3.connect('myfitnessapp.db')
     c = conn.cursor()
-
     c.execute("DELETE FROM exercise_entries WHERE id = ?", (entry_id,))
-
     conn.commit()
     conn.close()
-
     return '', 204
 
 if __name__ == '__main__':
