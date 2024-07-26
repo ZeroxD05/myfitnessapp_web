@@ -1,16 +1,8 @@
 {% extends "base.html" %} {% block content %}
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
 
-<!--<div class="search-container">
-  <input type="text" id="search-input" placeholder="Food..." />
-  <button id="search-button">+</button>
-</div>
 
-<div id="suggestions" class="suggestions-container">-->
-  <!-- Autovervollständigungsvorschläge werden hier angezeigt 
-</div>
-<br />
-<br />
-<br />-->
+
   <!-- Health Bar Container (initial hidden) -->
   <div class="health-bar-container" id="health-bar-container">
     <div id="health-bar" class="health-bar">
@@ -57,6 +49,4 @@
   {% endfor %}
 </ul>
 
-
-<script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}

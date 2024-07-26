@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
           if (response.ok) {
             var row = this.closest(".exercise-entry");
             if (row) {
-              row.parentNode.removeChild(row);
+              //row.parentNode.removeChild(row);
+              let date = document.getElementById(`date-${parseInt(entryId)}`);
+              date.parentNode.removeChild(date);
             }
           } else {
             console.error("Fehler beim Löschen des Übungseintrags.");
@@ -92,11 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Such- und Ergebnislogik
-  const searchInput = document.getElementById("search-input");
-  const suggestionsContainer = document.getElementById("suggestions");
   const resultsContainer = document.getElementById("results");
-  const searchButton = document.getElementById("search-button");
-  const clearButton = document.getElementById("clear-button");
   const deleteResultsButton = document.createElement("button");
   deleteResultsButton.className = "delete-food";
   deleteResultsButton.textContent = "Delete";
@@ -160,31 +158,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   initializeState();
 
-  searchInput.addEventListener("input", (e) => {
-    const query = e.target.value;
-    if (query) {
-      showSuggestions(query);
-    } else {
-      suggestionsContainer.innerHTML = "";
-      resultsContainer.style.display = "none"; // Verstecke den Ergebnisse-Container, wenn die Suche leer ist
-      localStorage.removeItem("searchQuery"); // Entferne die gespeicherte Suchanfrage, wenn das Feld leer ist
-    }
-  });
-
-  searchButton.addEventListener("click", () => {
-    const query = searchInput.value;
-    if (query) {
-      displayResults(query);
-    }
-  });
-
-  clearButton.addEventListener("click", () => {
-    searchInput.value = "";
-    suggestionsContainer.innerHTML = "";
-    resultsContainer.innerHTML = "";
-    resultsContainer.style.display = "none"; // Verstecke den Ergebnisse-Container
-    localStorage.removeItem("searchQuery"); // Entferne die gespeicherte Suchanfrage
-  });
+  // clearButton.addEventListener("click", () => {
+  //   searchInput.value = "";
+  //   suggestionsContainer.innerHTML = "";
+  //   resultsContainer.innerHTML = "";
+  //   resultsContainer.style.display = "none"; // Verstecke den Ergebnisse-Container
+  //   localStorage.removeItem("searchQuery"); // Entferne die gespeicherte Suchanfrage
+  // });
 
   deleteResultsButton.addEventListener("click", () => {
     resultsContainer.innerHTML = "";
@@ -212,7 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const weightInput = document.getElementById("weight");
   const heightInput = document.getElementById("height");
   const activityLevelInput = document.getElementById("activity-level");
-  const additionalButton = document.getElementById("additional-button");
   let goal = 2000; // Calorie goal
   let caloriesConsumed = 0;
 
@@ -247,20 +226,6 @@ document.addEventListener("DOMContentLoaded", function () {
       caloriesGoalElement.textContent = `${Math.round(dailyCalories)} kcal`;
       goal = dailyCalories;
       updateHealthBar();
-    }
-  });
-
-  additionalButton.addEventListener("click", function () {
-    const healthBarContainer = document.getElementById("health-bar-container");
-    if (
-      healthBarContainer.style.display === "none" ||
-      !healthBarContainer.style.display
-    ) {
-      healthBarContainer.style.display = "block";
-      additionalButton.textContent = "Hide kcal";
-    } else {
-      healthBarContainer.style.display = "none";
-      additionalButton.textContent = "Show kcal";
     }
   });
 });

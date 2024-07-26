@@ -165,7 +165,7 @@ def add_exercise_entry(date, exercise_id, reps, sets, kg):
 def get_exercise_entries():
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute("SELECT date, exercises.name, reps, sets, kg, (reps * sets * kg) as total_weight "
+    c.execute("SELECT exercise_entries.id, date, exercises.name, reps, sets, kg, (reps * sets * kg) as total_weight "
               "FROM exercise_entries JOIN exercises ON exercise_entries.exercise_id = exercises.id")
     rows = c.fetchall()
     conn.close()
