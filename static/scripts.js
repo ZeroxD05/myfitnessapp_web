@@ -274,3 +274,16 @@ function loadNotes() {
     addNoteToList(noteText);
   });
 }
+
+// Toggle Blog Content
+document.getElementById("toggle-blog").addEventListener("click", () => {
+  const blogContent = document.getElementById("blog-content");
+  if (
+    blogContent.style.display === "none" ||
+    blogContent.style.display === ""
+  ) {
+    blogContent.style.display = "block";
+  } else {
+    blogContent.style.display = "none";
+  }
+});

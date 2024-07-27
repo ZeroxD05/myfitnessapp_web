@@ -1,4 +1,5 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %} 
+{% block content %}
 
 <!-- Toggle Button for Goals-->
 <div class="goals-container">
@@ -13,10 +14,34 @@
       <div id="note-list"></div>
   </div>
 </div>
-  <br />
-  
-  <!-- Link to external JavaScript file -->
-  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+<br />
 
-  {% endblock %}
+<!-- Toggle Button for Blog-->
+<div class="blog-container">
+  <button id="toggle-blog" class="toggle-button btn">
+      Blog <i class="bx bx-chevron-down"></i>
+  </button>
+  <div id="blog-content" class="blog-content">
+      <div id="blog-content-inner" class="blog-item-content">
+          <div class="content-section">
+              <h3>Bulk</h3>
+              <p>Bulk Content</p>
+          </div>
+          <div class="content-section">
+              <h3>Cut</h3>
+              <p>Cut Content</p>
+          </div>
+          <div class="content-section">
+              <h3>Hold</h3>
+              <p>Hold Content</p>
+          </div>
+      </div>
+  </div>
+</div>
+<br />
+  
+<!-- Link to external JavaScript file -->
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+
+{% endblock %}
 </div>
