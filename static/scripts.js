@@ -229,12 +229,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  // Lade Notizen beim Laden der Seite
+  loadNotes();
+});
+
 document.getElementById("add-note").addEventListener("click", function () {
   var noteInput = document.getElementById("note-input");
   var noteText = noteInput.value.trim();
   if (noteText !== "") {
     addNoteToList(noteText);
-    noteInput.value = "";
+    noteInput.value = ""; // Leere das Eingabefeld
+    saveNotes(); // Speichere die Notizen im Local Storage
   }
 });
 
@@ -248,7 +254,23 @@ function addNoteToList(noteText) {
 
   note.querySelector(".delete-button").addEventListener("click", function () {
     noteList.removeChild(note);
+    saveNotes(); // Aktualisiere Local Storage nach Löschen
   });
 
   noteList.appendChild(note);
+}
+
+function saveNotes() {
+  var notes = [];
+  document.querySelectorAll(".note p").forEach(function (noteElement) {
+    notes.push(noteElement.textContent);
+  });
+  localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function loadNotes() {
+  var notes = JSON.parse(localStorage.getItem("notes")) || [];
+  notes.forEach(function (noteText) {
+    addNoteToList(noteText);
+  });
 }
