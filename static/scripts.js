@@ -250,7 +250,7 @@ function addNoteToList(noteText) {
   var note = document.createElement("div");
   note.className = "note";
   note.innerHTML =
-    "<p>" + noteText + '</p><button class="delete-button">Löschen</button>';
+    "<p>" + noteText + '</p><button class="delete-button">Delete</button>';
 
   note.querySelector(".delete-button").addEventListener("click", function () {
     noteList.removeChild(note);
