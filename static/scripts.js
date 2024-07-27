@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
               date.parentNode.removeChild(date);
             }
           } else {
-            console.error("Fehler beim Löschen des Übungseintrags.");
+            console.error("Error.");
           }
         })
         .catch((error) => console.error("Fehler:", error));
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
               listItem.parentNode.removeChild(listItem);
             }
           } else {
-            console.error("Fehler beim Löschen des Lebensmittels.");
+            console.error("Error");
           }
         })
         .catch((error) => console.error("Fehler:", error));
@@ -136,16 +136,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (data) {
       resultsContainer.innerHTML += `
         <h2>${capitalizeFirstLetter(query)}:</h2>
-        <p><strong>Kalorien:</strong> ${data.calories} kcal</p>
-        <p><strong>Eiweiß:</strong> ${data.protein} g</p>
-        <p><strong>Fette:</strong> ${data.fat} g</p>
-        <p><strong>Kohlenhydrate:</strong> ${data.carbohydrates} g</p>
+        <p><strong>Kcal:</strong> ${data.calories} kcal</p>
+        <p><strong>Protein:</strong> ${data.protein} g</p>
+        <p><strong>Fat:</strong> ${data.fat} g</p>
+        <p><strong>Carbs:</strong> ${data.carbohydrates} g</p>
       `;
       resultsContainer.style.display = "block"; // Zeige den Ergebnisse-Container
       localStorage.setItem("searchQuery", query); // Speichere die Suchanfrage
     } else {
       resultsContainer.innerHTML += `
-        <p>Keine Nährwertinformationen gefunden. Bitte versuchen Sie es mit einem anderen Suchbegriff.</p>
+        <p>Nothing found. Please try again.</p>
       `;
       resultsContainer.style.display = "block"; // Zeige den Ergebnisse-Container
       localStorage.setItem("searchQuery", query); // Speichere die Suchanfrage

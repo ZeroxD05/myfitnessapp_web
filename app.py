@@ -45,14 +45,14 @@ def exercise_entries():
         kg = request.form.get('kg')
 
         if not all([exercise_id, reps, sets, kg]):
-            flash("Bitte alle Felder ausfüllen", 'error')
+            flash("Fill out all fields", 'error')
             return redirect(url_for('exercise_entries'))
 
         try:
             add_exercise_entry(date_entry, int(exercise_id), int(reps), int(sets), float(kg))
-            flash("Sportübung hinzugefügt", 'success')
+            flash("Added", 'success')
         except ValueError:
-            flash("Fehler beim Hinzufügen der Übung. Überprüfe die Eingaben.", 'error')
+            flash("Error", 'error')
         return redirect(url_for('exercise_entries'))
 
     exercises = get_exercises()
@@ -69,7 +69,7 @@ def goals():
         activity_level = request.form.get('activity_level')
 
         if not all([gender, age, weight, height, activity_level]):
-            flash("Bitte alle Felder ausfüllen", 'error')
+            flash("Fill out all fields", 'error')
             return redirect(url_for('goals'))
 
         try:
@@ -78,7 +78,7 @@ def goals():
             height = float(height)
             activity_level = float(activity_level)
         except ValueError:
-            flash("Fehler bei den Eingaben. Bitte überprüfe die Werte.", 'error')
+            flash("Error", 'error')
             return redirect(url_for('goals'))
 
         if gender == 'male':
@@ -93,7 +93,7 @@ def goals():
         fat_goal = round(calories_goal * 0.2)
 
         set_goals(calories_goal, carbs_goal, protein_goal, fat_goal)
-        flash("Ziele gesetzt", 'success')
+        flash("Added goal", 'success')
         return redirect(url_for('goals'))
 
     goals = get_goals()
