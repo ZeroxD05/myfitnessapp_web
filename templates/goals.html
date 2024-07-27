@@ -3,15 +3,16 @@
 <!-- Toggle Button for Goals-->
 <div class="goals-container">
   <button id="toggle-goals" class="toggle-button">
-    Friends <i class="bx bx-chevron-down"></i>
+      Notes <i class="bx bx-chevron-down"></i>
   </button>
-  <div
-    id="goals-content"
-    class="goals-content"
-    style="display: none; color: white"
-  >
-    More Content
+  <div id="goals-content" class="goals-content">
+      <div class="note-input-container">
+          <input type="text" id="note-input" placeholder="Add Note...">
+          <button id="add-note" class="toggle-button">+</button>
+      </div>
+      <div id="note-list"></div>
   </div>
+</div>
   <br />
 
   <!-- Link to external JavaScript file -->

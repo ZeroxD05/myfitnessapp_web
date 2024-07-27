@@ -83,12 +83,11 @@ document.addEventListener("DOMContentLoaded", function () {
         goalsContent.style.display === ""
       ) {
         goalsContent.style.display = "block";
-        toggleGoalsButton.innerHTML =
-          "Friends <i class='bx bx-chevron-up'></i>";
+        toggleGoalsButton.innerHTML = "Notes <i class='bx bx-chevron-up'></i>";
       } else {
         goalsContent.style.display = "none";
         toggleGoalsButton.innerHTML =
-          "Friends <i class='bx bx-chevron-down'></i>";
+          "Notes <i class='bx bx-chevron-down'></i>";
       }
     });
   }
@@ -229,3 +228,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+document.getElementById("add-note").addEventListener("click", function () {
+  var noteInput = document.getElementById("note-input");
+  var noteText = noteInput.value.trim();
+  if (noteText !== "") {
+    addNoteToList(noteText);
+    noteInput.value = "";
+  }
+});
+
+function addNoteToList(noteText) {
+  var noteList = document.getElementById("note-list");
+
+  var note = document.createElement("div");
+  note.className = "note";
+  note.innerHTML =
+    "<p>" + noteText + '</p><button class="delete-button">Löschen</button>';
+
+  note.querySelector(".delete-button").addEventListener("click", function () {
+    noteList.removeChild(note);
+  });
+
+  noteList.appendChild(note);
+}
