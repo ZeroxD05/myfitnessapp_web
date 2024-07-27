@@ -302,3 +302,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+function togglePopup() {
+  const popup = document.getElementById("popup");
+  const isVisible = popup.style.display === "block";
+  popup.style.display = isVisible ? "none" : "block";
+}
+
+function changeLanguage(language) {
+  // Beispiel: Speichern Sie die Sprache in einem Cookie oder lokalem Speicher
+  document.cookie = `language=${language};path=/`;
+
+  // Hier sollten Sie den Code hinzufügen, um die Sprache der App tatsächlich zu ändern
+  alert(`Sprache geändert zu ${language === "de" ? "Deutsch" : "Englisch"}`);
+}
+
+function logout() {
+  // Hier sollte der Code hinzugefügt werden, um den Benutzer abzumelden
+  alert("Sie wurden abgemeldet.");
+}

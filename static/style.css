@@ -128,23 +128,27 @@ header {
 
 .header-content h1 {
   margin: 0;
+  position: relative;
+  left: 25vw;
 }
 
 .profile-container {
   position: absolute; /* Absolute Positionierung innerhalb des Headers */
   top: 12px; /* Abstand vom oberen Rand des Headers */
-  right: 20px; /* Abstand vom rechten Rand des Headers */
+  right: 17px; /* Abstand vom rechten Rand des Headers */
+  border: none;
 }
 
 .profile-link {
   display: inline-block;
+  border: none;
 }
 
 .profile-img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: none;
   cursor: pointer;
   transition: opacity 0.3s;
 }
@@ -156,8 +160,10 @@ header {
 nav {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  justify-content: space-evenly;
   margin-top: 10px;
+
+  margin-bottom: 2vh;
 }
 
 nav a {
