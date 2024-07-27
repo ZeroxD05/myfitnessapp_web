@@ -13,52 +13,57 @@
       href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
       rel="stylesheet"
     />
-    
-
-
-
-  <style>
+    <style>
       @keyframes shake {
-          0% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          50% { transform: translateX(5px); }
-          75% { transform: translateX(-5px); }
-          100% { transform: translateX(0); }
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        50% {
+          transform: translateX(5px);
+        }
+        75% {
+          transform: translateX(-5px);
+        }
+        100% {
+          transform: translateX(0);
+        }
       }
 
       .shaking-image {
-          width: 5vh;
-          animation: shake 0.5s ease-in-out infinite;
+        width: 5vh;
+        animation: shake 0.5s ease-in-out infinite;
       }
     </style>
-
-  </style>
-</head>
-<body>
-  
-   
   </head>
   <body>
     <header>
-      <div class="headnav">
-        <a href="{{ url_for('index') }}">
-          <i
-            class="bx bxs-home"
-            style="color: #ffffff; font-size: xx-large"
-          ></i>
-        </a>
-        <h1>        
-          <a href="{{ url_for('index') }}" style="text-decoration: none; color: #ffffff;">
-          MyFitnessApp</h1>
+      <div class="header-content">
+        <h1>
+          <a
+            href="{{ url_for('index') }}"
+            style="text-decoration: none; color: #ffffff"
+          >
+            MyFitnessApp
+          </a>
+        </h1>
+        <div class="profile-container">
+          <a href="{{ url_for('logout') }}" class="profile-link">
+            <img
+              src="{{ url_for('static', filename='profile.jpg') }}"
+              alt="Profile"
+              class="profile-img"
+            />
+          </a>
+        </div>
       </div>
-      <header>
-        <nav>
-          <a href="{{ url_for('food') }}">Food</a>
-
-          <a href="{{ url_for('exercise_entries') }}">Excercise</a>
-          <a href="{{ url_for('goals') }}">More</a>
-        </nav>
-      </header>
+      <nav>
+        <a href="{{ url_for('food') }}">Food</a>
+        <a href="{{ url_for('exercise_entries') }}">Exercise</a>
+        <a href="{{ url_for('goals') }}">More</a>
+      </nav>
     </header>
     <main>
       {% with messages = get_flashed_messages(with_categories=True) %} {% if

@@ -114,27 +114,50 @@ button:hover {
 header {
   background-color: #4169e1;
   color: white;
-  text-align: center;
-  padding: 12px 0;
+  padding: 12px 20px;
   border-bottom-left-radius: 80% 20px;
   border-bottom-right-radius: 80% 20px;
+  position: relative; /* Ermöglicht das Positionieren von Elementen innerhalb des Headers */
 }
 
-.headnav {
+.header-content {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  gap: 5vw;
-  justify-content: center;
+}
+
+.header-content h1 {
+  margin: 0;
+}
+
+.profile-container {
+  position: absolute; /* Absolute Positionierung innerhalb des Headers */
+  top: 12px; /* Abstand vom oberen Rand des Headers */
+  right: 20px; /* Abstand vom rechten Rand des Headers */
+}
+
+.profile-link {
+  display: inline-block;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.profile-img:hover {
+  opacity: 0.8;
 }
 
 nav {
   display: flex;
-  justify-content: space-evenly;
-  margin: 0 10px;
-  padding-right: 10vw;
-  margin-top: -2vh;
-  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 nav a {
@@ -185,10 +208,6 @@ main {
 
 .exercise-detail button {
   align-self: flex-start; /* Stellt sicher, dass der Button korrekt positioniert ist */
-}
-
-.exercise-detail button {
-  align-self: flex-start;
 }
 
 ul {
@@ -355,11 +374,6 @@ table tr:nth-child(even) {
   width: 100%;
   max-width: 600px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.results-container h2 {
-  margin-top: 0;
 }
 
 .results-container p {
@@ -481,6 +495,7 @@ table tr:nth-child(even) {
   border-radius: 8px;
   overflow: hidden;
 }
+
 .toggle-button {
   background-color: #333;
   color: white;
@@ -495,20 +510,24 @@ table tr:nth-child(even) {
   text-align: center;
   height: 5vh;
 }
+
 .toggle-button i {
   float: right;
   background-color: transparent;
 }
+
 .goals-content {
   padding: 10px;
   background-color: #333;
   display: none;
 }
+
 .note-input-container {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
 }
+
 #note-input {
   flex: 1;
   padding: 10px;
@@ -518,6 +537,7 @@ table tr:nth-child(even) {
   width: 100%;
   margin-top: 1.2vh;
 }
+
 #add-note {
   padding: 10px 20px;
   border: none;
@@ -527,6 +547,7 @@ table tr:nth-child(even) {
   cursor: pointer;
   width: 5vw;
 }
+
 .note {
   display: flex;
   justify-content: space-between;
@@ -538,6 +559,7 @@ table tr:nth-child(even) {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: white;
 }
+
 .note p {
   margin: 0;
   flex: 1;
@@ -642,9 +664,33 @@ table tr:nth-child(even) {
 
 .content {
   display: none;
-
   padding: 0 18px;
   overflow: hidden;
   background-color: #f9f9f9;
   margin-bottom: 15px;
+}
+
+.profile-container {
+  position: absolute; /* Positioniert das Profil-Container absolut im Header */
+  top: 20px; /* Abstand vom oberen Rand des Headers */
+  right: 50px; /* Abstand vom rechten Rand des Headers */
+  display: flex;
+  align-items: center;
+}
+
+.profile-link {
+  display: inline-block;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.profile-img:hover {
+  opacity: 0.8;
 }

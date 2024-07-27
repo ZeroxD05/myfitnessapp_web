@@ -6,13 +6,13 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f4f8;
+  font-family: "Poppins", sans-serif;
+  background: #f4f4f4; /* Helles Grau für den Hintergrund */
+  color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  -webkit-text-size-adjust: 100%; /* Verhindert automatisches Zoomen auf iOS */
 }
 
 .container {
@@ -20,7 +20,7 @@ body {
   max-width: 400px;
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -35,34 +35,59 @@ form {
   flex-direction: column;
 }
 
-input[type="text"],
-input[type="password"] {
+form label {
+  margin-bottom: 5px;
+  color: #444;
+  font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="password"] {
   padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px; /* Verhindert Zoomen */
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-input[type="submit"] {
+form button {
   padding: 10px;
   background-color: #007bff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-input[type="submit"]:hover {
+form button:hover {
   background-color: #0056b3;
+}
+
+form button:active {
+  background-color: #004494;
+}
+
+p {
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+}
+
+p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
 }
 
 .flash-message {
   margin-bottom: 15px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 4px;
   color: #fff;
 }
 
@@ -74,11 +99,27 @@ input[type="submit"]:hover {
   background-color: #dc3545;
 }
 
-a {
-  text-decoration: none;
-  color: #007bff;
+.messages {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
 }
 
-a:hover {
-  text-decoration: underline;
+.messages li {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.messages .success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.messages .error {
+  background-color: #f8d7da;
+  color: #721c24;
 }
