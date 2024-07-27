@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
-from database import create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from werkzeug.security import generate_password_hash, check_password_hash
+from database import create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals, add_user, get_user
 from datetime import datetime
 import sqlite3
 
@@ -10,7 +11,47 @@ create_database()
 
 @app.route('/')
 def index():
+    if 'username' not in session:
+        return redirect(url_for('login'))
     return render_template('index.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        if get_user(username):
+            flash("Username already exists", 'error')
+            return redirect(url_for('register'))
+        
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+        add_user(username, hashed_password)
+        flash("Registration successful! Please log in.", 'success')
+        return redirect(url_for('login'))
+    
+    return render_template('register.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        user = get_user(username)
+        if not user or not check_password_hash(user['password'], password):
+            flash("Invalid username or password", 'error')
+            return redirect(url_for('login'))
+        
+        session['username'] = username
+        return redirect(url_for('index'))  # Weiterleitung zur Index-Seite nach erfolgreichem Login
+    
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
 
 @app.route('/food', methods=['GET', 'POST'])
 def food():

@@ -10,6 +10,8 @@ def get_db_connection():
 def create_database():
     conn = get_db_connection()
     c = conn.cursor()
+
+    # Erstelle die Tabelle für Lebensmittel
     c.execute('''CREATE TABLE IF NOT EXISTS food (
                     id INTEGER PRIMARY KEY,
                     name TEXT NOT NULL,
@@ -18,6 +20,8 @@ def create_database():
                     protein INTEGER NOT NULL,
                     fat INTEGER NOT NULL
                 )''')
+
+    # Erstelle die Tabelle für tägliche Einträge
     c.execute('''CREATE TABLE IF NOT EXISTS daily_entries (
                     id INTEGER PRIMARY KEY,
                     date TEXT NOT NULL,
@@ -25,6 +29,8 @@ def create_database():
                     quantity INTEGER NOT NULL,
                     FOREIGN KEY (food_id) REFERENCES food (id) ON DELETE CASCADE
                 )''')
+
+    # Erstelle die Tabelle für Ziele
     c.execute('''CREATE TABLE IF NOT EXISTS goals (
                     id INTEGER PRIMARY KEY,
                     calories INTEGER NOT NULL,
@@ -32,10 +38,14 @@ def create_database():
                     protein INTEGER NOT NULL,
                     fat INTEGER NOT NULL
                 )''')
+
+    # Erstelle die Tabelle für Übungen
     c.execute('''CREATE TABLE IF NOT EXISTS exercises (
                     id INTEGER PRIMARY KEY,
                     name TEXT NOT NULL
                 )''')
+
+    # Erstelle die Tabelle für Übungseinträge
     c.execute('''CREATE TABLE IF NOT EXISTS exercise_entries (
                     id INTEGER PRIMARY KEY,
                     date TEXT NOT NULL,
@@ -45,84 +55,115 @@ def create_database():
                     kg REAL NOT NULL,
                     FOREIGN KEY (exercise_id) REFERENCES exercises (id) ON DELETE CASCADE
                 )''')
-    
+
+    # Erstelle die Tabelle für Benutzer
+    c.execute('''CREATE TABLE IF NOT EXISTS users (
+                    username TEXT PRIMARY KEY,
+                    password TEXT NOT NULL
+                )''')
+
+    # Füge Standardübungen hinzu, wenn die Tabelle leer ist
     c.execute("SELECT COUNT(*) FROM exercises")
     if c.fetchone()[0] == 0:
         default_exercises = [
-             'Bench Press',
-        'Incline Bench Press',
-        'Decline Bench Press',
-        'Chest Flyes',
-        'Push-Ups',
+            'Bench Press',
+            'Incline Bench Press',
+            'Decline Bench Press',
+            'Chest Flyes',
+            'Push-Ups',
 
-        # Schultern
-        'Overhead Press',
-        'Lateral Raises',
-        'Front Raises',
-        'Rear Delt Flyes',
-        'Arnold Press',
+            # Schultern
+            'Overhead Press',
+            'Lateral Raises',
+            'Front Raises',
+            'Rear Delt Flyes',
+            'Arnold Press',
 
-        # Arme
-        # Bizeps
-        'Bicep Curls',
-        'Hammer Curls',
-        'Concentration Curls',
-        'Preacher Curls',
-        # Trizeps
-        'Tricep Pushdown',
-        'Tricep Dips',
-        'Skull Crushers',
-        'Overhead Tricep Extension',
+            # Arme
+            # Bizeps
+            'Bicep Curls',
+            'Hammer Curls',
+            'Concentration Curls',
+            'Preacher Curls',
+            # Trizeps
+            'Tricep Pushdown',
+            'Tricep Dips',
+            'Skull Crushers',
+            'Overhead Tricep Extension',
 
-        # Rücken
-        'Lat Pulldown',
-        'Pull-Ups',
-        'Bent Over Rows',
-        'Deadlift',
-        'T-Bar Rows',
-        'Seated Rows',
-        'Face Pulls',
-        'Hyperextensions',
+            # Rücken
+            'Lat Pulldown',
+            'Pull-Ups',
+            'Bent Over Rows',
+            'Deadlift',
+            'T-Bar Rows',
+            'Seated Rows',
+            'Face Pulls',
+            'Hyperextensions',
 
-        # Beine
-        # Quadrizeps
-        'Squats',
-        'Leg Press',
-        'Lunges',
-        'Bulgarian Split Squats',
-        # Hamstrings
-        'Deadlifts',
-        'Leg Curls',
-        'Romanian Deadlifts',
-        # Waden
-        'Calf Raises',
-        'Seated Calf Raises',
+            # Beine
+            # Quadrizeps
+            'Squats',
+            'Leg Press',
+            'Lunges',
+            'Bulgarian Split Squats',
+            # Hamstrings
+            'Deadlifts',
+            'Leg Curls',
+            'Romanian Deadlifts',
+            # Waden
+            'Calf Raises',
+            'Seated Calf Raises',
 
-        # Po
-        'Hip Thrusts',
-        'Glute Bridges',
-        'Donkey Kicks',
-        'Step-Ups',
-        'Cable Kickbacks',
+            # Po
+            'Hip Thrusts',
+            'Glute Bridges',
+            'Donkey Kicks',
+            'Step-Ups',
+            'Cable Kickbacks',
 
-        # Bauch
-        'Crunches',
-        'Leg Raises',
-        'Planks',
-        'Russian Twists',
-        'Bicycle Crunches',
-        'Hanging Leg Raises',
+            # Bauch
+            'Crunches',
+            'Leg Raises',
+            'Planks',
+            'Russian Twists',
+            'Bicycle Crunches',
+            'Hanging Leg Raises',
 
-        # Ganzkörper
-        'Burpees',
-        'Kettlebell Swings',
-        'Battle Ropes'
+            # Ganzkörper
+            'Burpees',
+            'Kettlebell Swings',
+            'Battle Ropes'
         ]
         c.executemany("INSERT INTO exercises (name) VALUES (?)", [(exercise,) for exercise in default_exercises])
 
+    conn.commit()
+    conn.close()
 
+# Funktionen für Benutzer-Management
+def add_user(username, password_hash):
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password_hash))
+    conn.commit()
+    conn.close()
 
+def get_user(username):
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute("SELECT password FROM users WHERE username = ?", (username,))
+    user = c.fetchone()
+    conn.close()
+    return user
 
+def delete_user(username):
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute("DELETE FROM users WHERE username = ?", (username,))
+    conn.commit()
+    conn.close()
+
+# Funktionen für die Verwaltung von Lebensmitteln
 def add_food(name, calories, carbs, protein, fat):
     conn = get_db_connection()
     c = conn.cursor()
@@ -139,6 +180,7 @@ def get_food():
     conn.close()
     return rows
 
+# Funktionen für die Verwaltung von Übungen
 def add_exercise(name):
     conn = get_db_connection()
     c = conn.cursor()
@@ -154,6 +196,7 @@ def get_exercises():
     conn.close()
     return rows
 
+# Funktionen für Übungseinträge
 def add_exercise_entry(date, exercise_id, reps, sets, kg):
     conn = get_db_connection()
     c = conn.cursor()
@@ -171,6 +214,7 @@ def get_exercise_entries():
     conn.close()
     return rows
 
+# Funktionen für die Verwaltung von Zielen
 def set_goals(calories, carbs, protein, fat):
     conn = get_db_connection()
     c = conn.cursor()
