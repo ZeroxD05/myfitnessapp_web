@@ -613,8 +613,11 @@ table tr:nth-child(even) {
 
 .blog-container {
   margin-top: -10px;
+  background-color: #333;
 }
-
+.blog-container:hover {
+  background-color: #333;
+}
 .blog-content {
   display: none;
 }
