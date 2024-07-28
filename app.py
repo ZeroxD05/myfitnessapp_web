@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals, add_user, get_user
+from database import create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals, add_user, get_user, get_all_users, delete_user
 from datetime import datetime
 import sqlite3
 
@@ -65,13 +65,25 @@ def logout():
 def admin_dashboard():
     if not session.get('admin'):
         return redirect(url_for('login'))
-    return render_template('admin_dashboard.html')
+    users = [
+        {'username': 'user1',  'status': 'active'},
+        {'username': 'user2',  'status': 'inactive'},
+        {'username': 'user3',  'status': 'active'}
+    ]
+    return render_template('admin_dashboard.html', users=users)
 
 @app.route('/user')
 def user_dashboard():
     if 'username' not in session:
         return redirect(url_for('login'))
     return render_template('user.html', username=session['username'])
+
+@app.route('/delete_user/<username>', methods=['POST'])
+def delete_user_route(username):
+    if not session.get('admin'):
+        return redirect(url_for('login'))
+    # Hier kannst du die delete_user(username)-Funktion aufrufen, wenn die Datenbank aktiv ist.
+    return redirect(url_for('admin_dashboard'))
 
 @app.route('/food', methods=['GET', 'POST'])
 def food():
