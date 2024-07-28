@@ -7,6 +7,9 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Ändere dies in einen echten geheimen Schlüssel
 
+ADMIN_USERNAME = 'Ata'
+ADMIN_PASSWORD = 'Atailayda05'
+
 create_database()
 
 @app.route('/')
@@ -38,6 +41,10 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
+        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+            session['admin'] = True
+            return redirect(url_for('admin_dashboard'))
+        
         user = get_user(username)
         if not user or not check_password_hash(user['password'], password):
             flash("Invalid username or password", 'error')
@@ -51,10 +58,26 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
+    session.pop('admin', None)
     return redirect(url_for('login'))
+
+@app.route('/admin')
+def admin_dashboard():
+    if not session.get('admin'):
+        return redirect(url_for('login'))
+    return render_template('admin_dashboard.html')
+
+@app.route('/user')
+def user_dashboard():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    return render_template('user.html', username=session['username'])
 
 @app.route('/food', methods=['GET', 'POST'])
 def food():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         name = request.form.get('name')
         calories = request.form.get('calories')
@@ -78,6 +101,9 @@ def food():
 
 @app.route('/exercise_entries', methods=['GET', 'POST'])
 def exercise_entries():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         date_entry = datetime.now().strftime('%y-%m-%d')
         exercise_id = request.form.get('exercise_id')
@@ -102,6 +128,9 @@ def exercise_entries():
 
 @app.route('/goals', methods=['GET', 'POST'])
 def goals():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
     if request.method == 'POST':
         gender = request.form.get('gender')
         age = request.form.get('age')
@@ -142,6 +171,9 @@ def goals():
 
 @app.route('/delete_food/<int:item_id>', methods=['DELETE'])
 def delete_food(item_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
     conn = sqlite3.connect('myfitnessapp.db')
     c = conn.cursor()
     c.execute("DELETE FROM food WHERE id = ?", (item_id,))
@@ -151,6 +183,9 @@ def delete_food(item_id):
 
 @app.route('/delete_exercise_entry/<int:entry_id>', methods=['DELETE'])
 def delete_exercise_entry(entry_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
     conn = sqlite3.connect('myfitnessapp.db')
     c = conn.cursor()
     c.execute("DELETE FROM exercise_entries WHERE id = ?", (entry_id,))
@@ -160,9 +195,3 @@ def delete_exercise_entry(entry_id):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
-
-@app.route('/logout')
-def logout():
-    session.pop('username', None)
-    return redirect(url_for('login'))

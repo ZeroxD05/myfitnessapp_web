@@ -231,3 +231,21 @@ def get_goals():
     goals = c.fetchone()
     conn.close()
     return goals
+
+
+def get_db_connection():
+    conn = sqlite3.connect('users.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+def get_all_users():
+    conn = get_db_connection()
+    users = conn.execute('SELECT * FROM users').fetchall()
+    conn.close()
+    return users
+
+def delete_user(username):
+    conn = get_db_connection()
+    conn.execute('DELETE FROM users WHERE username = ?', (username,))
+    conn.commit()
+    conn.close()
