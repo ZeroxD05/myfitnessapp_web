@@ -3,9 +3,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from database import create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals, add_user, get_user, get_all_users, delete_user
 from datetime import datetime
 import sqlite3
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Ändere dies in einen echten geheimen Schlüssel
+socketio = SocketIO(app, cors_allowed_origins="*")  # Konfiguriere CORS, wenn nötig
 
 ADMIN_USERNAME = 'Ata'
 ADMIN_PASSWORD = 'Atailayda05'
@@ -204,6 +206,7 @@ def delete_exercise_entry(entry_id):
     conn.commit()
     conn.close()
     return '', 204
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
