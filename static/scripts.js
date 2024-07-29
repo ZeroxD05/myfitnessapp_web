@@ -321,3 +321,24 @@ function logout() {
   // Hier sollte der Code hinzugefügt werden, um den Benutzer abzumelden
   alert("Sie wurden abgemeldet.");
 }
+
+// Toggle-Funktion für die Ernährung
+const toggleNutritionButton = document.getElementById("toggle-nutrition");
+const nutritionContent = document.getElementById("nutrition-content");
+
+if (toggleNutritionButton && nutritionContent) {
+  toggleNutritionButton.addEventListener("click", function () {
+    if (
+      nutritionContent.style.display === "none" ||
+      nutritionContent.style.display === ""
+    ) {
+      nutritionContent.style.display = "block";
+      toggleNutritionButton.innerHTML =
+        "Nutrition <i class='bx bx-chevron-up'></i>";
+    } else {
+      nutritionContent.style.display = "none";
+      toggleNutritionButton.innerHTML =
+        "Nutrition <i class='bx bx-chevron-down'></i>";
+    }
+  });
+}

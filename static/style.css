@@ -612,7 +612,7 @@ table tr:nth-child(even) {
 }
 
 .blog-container {
-  margin-top: -10px;
+  margin-top: -5vh;
   background-color: #333;
 }
 .blog-container:hover {
@@ -702,4 +702,9 @@ table tr:nth-child(even) {
 
 .profile-img:hover {
   opacity: 0.8;
+}
+
+#nutrition-content {
+  color: black;
+  background-color: white;
 }
