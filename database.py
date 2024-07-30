@@ -233,10 +233,7 @@ def get_goals():
     return goals
 
 
-def get_db_connection():
-    conn = sqlite3.connect('users.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+
 
 def get_all_users():
     conn = get_db_connection()

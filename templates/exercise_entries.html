@@ -33,13 +33,7 @@
       {% endif %}
 
         <div style="color: white;" id="date-{{ entry['id'] }}" class="date-header">{{ entry['date'] }}</div>
-        <script>
-            document.querySelectorAll('.date-header').forEach(function (dateHeader) {
-                if (!dateHeader.innerText === {{ entry['date'] }}) {
-                    document.getElementById("date-{{ entry['id'] }}").style.display = "none";
-                }
-              });
-        </script>
+        
       <div class="exercise-group"> <!-- Start new day's group -->
       {% set current_date = entry['date'] %}
     {% endif %}

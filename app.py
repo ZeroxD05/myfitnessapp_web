@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals, add_user, get_user, get_all_users, delete_user
+from database import DATABASE, create_database, add_food, get_food, add_exercise_entry, get_exercise_entries, add_exercise, get_exercises, set_goals, get_goals, add_user, get_user, get_all_users, delete_user
 from datetime import datetime
 import sqlite3
 from flask_socketio import SocketIO, emit
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Ändere dies in einen echten geheimen Schlüssel
@@ -13,6 +14,25 @@ ADMIN_USERNAME = 'Ata'
 ADMIN_PASSWORD = 'Atailayda05'
 
 create_database()
+
+# Flask-Login einrichten
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
+
+# Benutzer-Datenbank simulieren (durch DB ersetzen)
+users = {'user@example.com': {'password': 'password'}}
+
+class User(UserMixin):
+    def __init__(self, id):
+        self.id = id
+
+@login_manager.user_loader
+def load_user(user_id):
+    user = get_user(user_id)
+    if user:
+        return User(user_id)
+    return None
 
 @app.route('/')
 def index():
@@ -52,18 +72,22 @@ def login():
             flash("Invalid username or password", 'error')
             return redirect(url_for('login'))
         
+        login_user(User(username))
         session['username'] = username
         return redirect(url_for('index'))  # Weiterleitung zur Index-Seite nach erfolgreichem Login
     
     return render_template('login.html')
 
 @app.route('/logout')
+@login_required
 def logout():
+    logout_user()
     session.pop('username', None)
     session.pop('admin', None)
     return redirect(url_for('login'))
 
 @app.route('/admin')
+@login_required
 def admin_dashboard():
     if not session.get('admin'):
         return redirect(url_for('login'))
@@ -75,23 +99,21 @@ def admin_dashboard():
     return render_template('admin_dashboard.html', users=users)
 
 @app.route('/user')
+@login_required
 def user_dashboard():
-    if 'username' not in session:
-        return redirect(url_for('login'))
     return render_template('user.html', username=session['username'])
 
 @app.route('/delete_user/<username>', methods=['POST'])
+@login_required
 def delete_user_route(username):
     if not session.get('admin'):
         return redirect(url_for('login'))
-    # Hier kannst du die delete_user(username)-Funktion aufrufen, wenn die Datenbank aktiv ist.
+    delete_user(username)
     return redirect(url_for('admin_dashboard'))
 
 @app.route('/food', methods=['GET', 'POST'])
+@login_required
 def food():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-
     if request.method == 'POST':
         name = request.form.get('name')
         calories = request.form.get('calories')
@@ -114,10 +136,8 @@ def food():
     return render_template('food.html', foods=foods)
 
 @app.route('/exercise_entries', methods=['GET', 'POST'])
+@login_required
 def exercise_entries():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-
     if request.method == 'POST':
         date_entry = datetime.now().strftime('%y-%m-%d')
         exercise_id = request.form.get('exercise_id')
@@ -141,10 +161,8 @@ def exercise_entries():
     return render_template('exercise_entries.html', exercises=exercises, entries=entries)
 
 @app.route('/goals', methods=['GET', 'POST'])
+@login_required
 def goals():
-    if 'username' not in session:
-        return redirect(url_for('login'))
-
     if request.method == 'POST':
         gender = request.form.get('gender')
         age = request.form.get('age')
@@ -184,11 +202,9 @@ def goals():
     return render_template('goals.html', goals=goals)
 
 @app.route('/delete_food/<int:item_id>', methods=['DELETE'])
+@login_required
 def delete_food(item_id):
-    if 'username' not in session:
-        return redirect(url_for('login'))
-
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     c.execute("DELETE FROM food WHERE id = ?", (item_id,))
     conn.commit()
@@ -196,17 +212,17 @@ def delete_food(item_id):
     return '', 204
 
 @app.route('/delete_exercise_entry/<int:entry_id>', methods=['DELETE'])
+@login_required
 def delete_exercise_entry(entry_id):
-    if 'username' not in session:
-        return redirect(url_for('login'))
-
-    conn = sqlite3.connect('myfitnessapp.db')
+    conn = sqlite3.connect(DATABASE)
     c = conn.cursor()
     c.execute("DELETE FROM exercise_entries WHERE id = ?", (entry_id,))
     conn.commit()
     conn.close()
-    return '', 204
+    print(type(entry_id))
 
+
+    return '', 204
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
