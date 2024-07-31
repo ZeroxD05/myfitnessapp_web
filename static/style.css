@@ -118,6 +118,8 @@ header {
   border-bottom-left-radius: 80% 20px;
   border-bottom-right-radius: 80% 20px;
   position: relative; /* Ermöglicht das Positionieren von Elementen innerhalb des Headers */
+  margin-bottom: 3vh;
+  height: 10vh;
 }
 
 .header-content {
@@ -706,4 +708,30 @@ table tr:nth-child(even) {
 #nutrition-content {
   color: black;
   background-color: white;
+}
+
+.spacer {
+  height: 20vh; /* Höhe nach Bedarf anpassen */
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #4169e1;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  border-top-left-radius: 80% 10px;
+  border-top-right-radius: 80% 10px;
+}
+
+footer nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer nav a:hover {
+  text-decoration: none;
 }

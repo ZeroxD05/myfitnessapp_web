@@ -59,11 +59,6 @@
           </a>
         </div>
       </div>
-      <nav>
-        <a href="{{ url_for('food') }}">Food</a>
-        <a href="{{ url_for('exercise_entries') }}">Exercise</a>
-        <a href="{{ url_for('goals') }}">More</a>
-      </nav>
     </header>
     <main>
       {% with messages = get_flashed_messages(with_categories=True) %} {% if
@@ -75,5 +70,15 @@
       </ul>
       {% endif %} {% endwith %} {% block content %}{% endblock %}
     </main>
+
+    <div class="spacer"></div>
+
+    <footer>
+      <nav>
+        <a href="{{ url_for('food') }}"> Food </a>
+        <a href="{{ url_for('exercise_entries') }}"> Exercise </a>
+        <a href="{{ url_for('goals') }}"> More </a>
+      </nav>
+    </footer>
   </body>
 </html>
