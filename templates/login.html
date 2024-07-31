@@ -8,6 +8,51 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='styles-account.css') }}"
     />
+    <link
+      href="https://unpkg.com/boxicons/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+
+      .auth-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .show-password-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .show-password-container input[type="password"] {
+        flex: 1;
+        padding-right: 40px; /* Platz für das Icon */
+      }
+
+      .show-password-container .show-password-icon {
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #333;
+      }
+
+      .password-wrapper {
+        position: relative;
+        font-size: 24px;
+      }
+    </style>
   </head>
   <body>
     <div class="auth-container">
@@ -18,7 +63,13 @@
           <input type="text" id="username" name="username" required />
 
           <label for="password">Password:</label>
-          <input type="password" id="password" name="password" required />
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" required />
+            <i
+              class="bx bx-hide show-password-icon"
+              onclick="togglePassword()"
+            ></i>
+          </div>
 
           <button type="submit">Log In</button>
         </form>
@@ -37,5 +88,20 @@
         {% endif %} {% endwith %}
       </div>
     </div>
+    <script>
+      function togglePassword() {
+        var passwordField = document.getElementById("password");
+        var passwordIcon = document.querySelector(".show-password-icon");
+        if (passwordField.type === "password") {
+          passwordField.type = "text";
+          passwordIcon.classList.remove("bx-hide");
+          passwordIcon.classList.add("bx-show");
+        } else {
+          passwordField.type = "password";
+          passwordIcon.classList.remove("bx-show");
+          passwordIcon.classList.add("bx-hide");
+        }
+      }
+    </script>
   </body>
 </html>
