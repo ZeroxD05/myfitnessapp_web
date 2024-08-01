@@ -5,14 +5,33 @@
   box-sizing: border-box;
 }
 
+header {
+  background-color: #4169e1;
+  color: white;
+  padding: 12px 20px;
+  border-bottom-left-radius: 80% 20px;
+  border-bottom-right-radius: 80% 20px;
+  position: relative; /* Ermöglicht das Positionieren von Elementen innerhalb des Headers */
+  margin-bottom: 3vh;
+  height: 10vh;
+}
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-content h1 {
+  margin: 0;
+  position: relative;
+  left: 25vw;
+}
 body {
   font-family: "Poppins", sans-serif;
   background: #f4f4f4; /* Helles Grau für den Hintergrund */
   color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  height: 100%;
+  margin-bottom: -50vh;
 }
 
 .container {

@@ -19,6 +19,9 @@
         align-items: center;
         height: 100vh;
         background-color: #f4f4f4;
+        margin-top: -10vh;
+        width: 80vw;
+        margin-left: 10vw;
       }
 
       .auth-content {
@@ -55,6 +58,18 @@
     </style>
   </head>
   <body>
+    <header>
+      <div class="header-content">
+        <h1>
+          <a
+            href="{{ url_for('index') }}"
+            style="text-decoration: none; color: #ffffff"
+          >
+            FitFusion
+          </a>
+        </h1>
+      </div>
+    </header>
     <div class="auth-container">
       <div class="auth-content">
         <h2>Registration</h2>
