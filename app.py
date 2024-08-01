@@ -10,8 +10,6 @@ app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Ändere dies in einen echten geheimen Schlüssel
 socketio = SocketIO(app, cors_allowed_origins="*")  # Konfiguriere CORS, wenn nötig
 
-ADMIN_USERNAME = 'Ata'
-ADMIN_PASSWORD = 'Atailayda05'
 
 create_database()
 
@@ -63,10 +61,6 @@ def login():
         username = request.form['username']
         password = request.form['password']
         
-        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
-            session['admin'] = True
-            return redirect(url_for('admin_dashboard'))
-        
         user = get_user(username)
         if not user or not check_password_hash(user['password'], password):
             flash("Invalid username or password", 'error')
@@ -86,17 +80,6 @@ def logout():
     session.pop('admin', None)
     return redirect(url_for('login'))
 
-@app.route('/admin')
-@login_required
-def admin_dashboard():
-    if not session.get('admin'):
-        return redirect(url_for('login'))
-    users = [
-        {'username': 'user1',  'status': 'active'},
-        {'username': 'user2',  'status': 'inactive'},
-        {'username': 'user3',  'status': 'active'}
-    ]
-    return render_template('admin_dashboard.html', users=users)
 
 @app.route('/user')
 @login_required

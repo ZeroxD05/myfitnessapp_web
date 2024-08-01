@@ -21,10 +21,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url("{{ url_for('static', filename='background.png') }}");
+        /*background-image: url("{{ url_for('static', filename='background.png') }}");*/
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .shadow-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(209, 209, 209, 0.616); /* Dunklerer Schatten */
+        z-index: 1; /* Unter den anderen Elementen */
       }
 
       .auth-container {
@@ -32,8 +44,10 @@
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
-        width: 100%;
+        width: 80%;
         max-width: 400px;
+        position: relative;
+        z-index: 2; /* Über dem Schatten */
       }
 
       .show-password-container {
@@ -58,6 +72,7 @@
         position: relative;
         font-size: 24px;
       }
+
       header {
         position: absolute;
         top: 0;
@@ -67,6 +82,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        z-index: 2; /* Über dem Schatten */
       }
 
       header h1 a {
@@ -77,6 +93,7 @@
   </head>
 
   <body>
+    <div class="shadow-overlay"></div>
     <header>
       <div class="header-content">
         <h1>
