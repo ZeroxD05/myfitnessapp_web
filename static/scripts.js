@@ -342,3 +342,68 @@ if (toggleNutritionButton && nutritionContent) {
     }
   });
 }
+// Toggle-Funktion für die Diets
+const toggleDietsButton = document.getElementById("toggle-diets");
+const dietsContent = document.getElementById("diets-content");
+
+if (toggleDietsButton && dietsContent) {
+  toggleDietsButton.addEventListener("click", function () {
+    if (
+      dietsContent.style.display === "none" ||
+      dietsContent.style.display === ""
+    ) {
+      dietsContent.style.display = "block";
+      toggleDietsButton.innerHTML = "Diets <i class='bx bx-chevron-up'></i>";
+    } else {
+      dietsContent.style.display = "none";
+      toggleDietsButton.innerHTML = "Diets <i class='bx bx-chevron-down'></i>";
+    }
+  });
+}
+
+const diets = {
+  keto: {
+    title: "Ketogenic diet",
+    content:
+      "The ketogenic diet is a very low-carbohydrate, high-fat diet. It reduces blood sugar and insulin levels and shifts the body's metabolism away from carbohydrates towards fats and ketones.",
+  },
+  vegan: {
+    title: "Vegan diet",
+    content:
+      "A vegan diet excludes all animal products and is based on plant-based foods. This can lead to an increased intake of fiber and a reduced risk of certain diseases.",
+  },
+  paleo: {
+    title: "Paleo diet",
+    content:
+      "The Paleo diet is based on the presumed eating habits of early human ancestors and includes meat, fish, fruits, vegetables, nuts, and seeds, while avoiding processed foods, sugar, and grains.",
+  },
+};
+
+document.querySelectorAll(".diet-button").forEach((button) => {
+  button.addEventListener("click", function () {
+    const dietKey = this.getAttribute("data-diet");
+    const diet = diets[dietKey];
+    let contentSection = this.nextElementSibling;
+
+    if (
+      !contentSection ||
+      !contentSection.classList.contains("content-section")
+    ) {
+      contentSection = document.createElement("div");
+      contentSection.classList.add("content-section");
+      contentSection.innerHTML = `<h1>${diet.title}</h1><p>${diet.content}</p>`;
+      this.parentNode.insertBefore(contentSection, this.nextSibling);
+    }
+
+    if (
+      contentSection.style.display === "none" ||
+      contentSection.style.display === ""
+    ) {
+      contentSection.style.display = "block";
+      this.innerHTML = `${diet.title} <i class='bx bx-chevron-up'></i>`;
+    } else {
+      contentSection.style.display = "none";
+      this.innerHTML = `${diet.title} <i class='bx bx-chevron-down'></i>`;
+    }
+  });
+});

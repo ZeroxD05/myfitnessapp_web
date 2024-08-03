@@ -67,6 +67,10 @@ form {
   color: white;
 }
 
+.toggle-button:hover {
+  background-color: transparent;
+}
+
 form label {
   display: block;
   margin: 10px 0 5px;
@@ -482,7 +486,6 @@ table tr:nth-child(even) {
 }
 
 .toggle-button {
-  background-color: #27408b;
   color: #ffffff;
   border: none;
   padding: 10px 20px;
@@ -491,10 +494,6 @@ table tr:nth-child(even) {
   border-radius: 20px;
 
   margin-bottom: 20px;
-}
-
-.toggle-button:hover {
-  background-color: transparent;
 }
 
 .goals-container {

@@ -10,6 +10,8 @@ app = Flask(__name__)
 app.secret_key = 'supersecretkey'  # Ändere dies in einen echten geheimen Schlüssel
 socketio = SocketIO(app, cors_allowed_origins="*")  # Konfiguriere CORS, wenn nötig
 
+ADMIN_Name = "zero"
+ADMIN_Password = "zero123"
 
 create_database()
 
@@ -62,13 +64,15 @@ def login():
         password = request.form['password']
         
         user = get_user(username)
+        if username == ADMIN_Name and password == ADMIN_Password:
+            return redirect(url_for('admin_dashboard'))
         if not user or not check_password_hash(user['password'], password):
             flash("Invalid username or password", 'error')
             return redirect(url_for('login'))
         
         login_user(User(username))
         session['username'] = username
-        return redirect(url_for('index'))  # Weiterleitung zur Index-Seite nach erfolgreichem Login
+        return redirect(url_for('index'))
     
     return render_template('login.html')
 
@@ -86,13 +90,7 @@ def logout():
 def user_dashboard():
     return render_template('user.html', username=session['username'])
 
-@app.route('/delete_user/<username>', methods=['POST'])
-@login_required
-def delete_user_route(username):
-    if not session.get('admin'):
-        return redirect(url_for('login'))
-    delete_user(username)
-    return redirect(url_for('admin_dashboard'))
+
 
 @app.route('/food', methods=['GET', 'POST'])
 @login_required
@@ -142,6 +140,12 @@ def exercise_entries():
     exercises = get_exercises()
     entries = get_exercise_entries()
     return render_template('exercise_entries.html', exercises=exercises, entries=entries)
+
+@app.route('/admin_dashboard', methods=['GET', 'DELETE'])
+def admin_dashboard():
+        users = get_all_users()
+        return render_template('admin_dashboard.html', users=users)
+
 
 @app.route('/goals', methods=['GET', 'POST'])
 @login_required
@@ -206,6 +210,19 @@ def delete_exercise_entry(entry_id):
 
 
     return '', 204
+
+
+
+@app.route('/delete_user/<username>', methods=['DELETE', 'GET'])
+@login_required
+def delete_user_delete(username):
+    #if not session.get('admin'):
+        #return redirect(url_for('login'))
+    delete_user(username)
+    print("test")
+    return '', 204
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
