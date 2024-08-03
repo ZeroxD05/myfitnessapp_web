@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-
+<link rel="stylesheet" href="https://unpkg.com/boxicons/css/boxicons.min.css">
 
   <!-- Health Bar Container (initial hidden) -->
   <div class="health-bar-container" id="health-bar-container">
@@ -10,6 +10,12 @@
     <div class="percentage" style="color: white;">
       <span id="calories-consumed" style="color: white;">0 kcal</span> / 
       <span id="calories-goal" style="color: white;"></span>
+      <br>
+      <br>
+      <span style="color: rgba(255, 255, 255, 0.562);">Bulk: <i class="bx bx-arrow-up"></i>250-500kcal</span>
+      <br>
+      <span style="color: rgba(255, 255, 255, 0.562); ">Cut: <i class="bx bx-arrow-down"></i>500kcal</span>
+    <br>
     </div>
   </div>
   <div class="input-section">

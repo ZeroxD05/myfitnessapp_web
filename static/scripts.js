@@ -373,7 +373,7 @@ const diets = {
       "A vegan diet excludes all animal products and is based on plant-based foods. This can lead to an increased intake of fiber and a reduced risk of certain diseases.",
   },
   paleo: {
-    title: "Paleo diet",
+    title: "</i>Paleo diet",
     content:
       "The Paleo diet is based on the presumed eating habits of early human ancestors and includes meat, fish, fruits, vegetables, nuts, and seeds, while avoiding processed foods, sugar, and grains.",
   },
