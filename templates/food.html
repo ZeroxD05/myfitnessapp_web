@@ -1,7 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 <link rel="stylesheet" href="https://unpkg.com/boxicons/css/boxicons.min.css">
-
   <!-- Health Bar Container (initial hidden) -->
   <div class="health-bar-container" id="health-bar-container">
     <div id="health-bar" class="health-bar">
@@ -12,13 +11,23 @@
       <span id="calories-goal" style="color: white;"></span>
       <br>
       <br>
-      <span style="color: rgba(255, 255, 255, 0.562);">Bulk: <i class="bx bx-arrow-up"></i>250-500kcal</span>
-      <br>
-      <span style="color: rgba(255, 255, 255, 0.562); ">Cut: <i class="bx bx-arrow-down"></i>500kcal</span>
+      <div class="info-container">
+        <div class="info-icon" onclick="showInfo()">i</div>
+        <div class="info-tooltip" id="infoTooltip">
+            <span style="color: rgba(255, 255, 255, 0.562);">
+                Bulk: <i class="bx bx-arrow-up"></i> 250-500kcal
+            </span>
+            <br>
+            <span style="color: rgba(255, 255, 255, 0.562);">
+                Cut: <i class="bx bx-arrow-down"></i> 500kcal
+            </span>
+        </div>
+    </div>
+    </div>
     <br>
     </div>
   </div>
-  <div class="input-section">
+  <div style="margin-top: -3vh;" class="input-section">
     <input type="number" id="calorie-input" placeholder="Enter calories" />
     <button id="add-calories-btn">Add Calories</button>
   </div>

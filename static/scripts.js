@@ -407,3 +407,16 @@ document.querySelectorAll(".diet-button").forEach((button) => {
     }
   });
 });
+function showInfo() {
+  const tooltip = document.getElementById("infoTooltip");
+  if (tooltip) {
+    tooltip.style.opacity = 1;
+    tooltip.style.display = "block";
+    setTimeout(() => {
+      tooltip.style.opacity = 0;
+      setTimeout(() => {
+        tooltip.style.display = "none";
+      }, 500); // Match the timeout to the opacity transition duration
+    }, 3000); // Tooltip visible for 3 seconds
+  }
+}

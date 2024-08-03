@@ -734,3 +734,36 @@ footer nav a {
 footer nav a:hover {
   text-decoration: none;
 }
+.info-container {
+  position: relative;
+  display: inline-block;
+}
+
+.info-icon {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+.info-tooltip {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  width: 200px;
+  top: -40px; /* Adjust this value to position the tooltip vertically */
+  right: 70px; /* Position horizontally to the right of the icon */
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  z-index: 10;
+}
+.info-container:hover .info-tooltip {
+  display: block;
+}
