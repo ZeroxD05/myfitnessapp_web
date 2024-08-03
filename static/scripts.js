@@ -363,19 +363,34 @@ if (toggleDietsButton && dietsContent) {
 
 const diets = {
   keto: {
-    title: "Ketogenic diet",
+    title: "Ketogenic Diet 🥑",
     content:
-      "The ketogenic diet is a very low-carbohydrate, high-fat diet. It reduces blood sugar and insulin levels and shifts the body's metabolism away from carbohydrates towards fats and ketones.",
+      "The ketogenic diet is a very low-carbohydrate, high-fat diet. It reduces blood sugar and insulin levels and shifts the body's metabolism away from carbohydrates towards fats and ketones. 🌟",
+    color: "#ffcc00", // Gelb, passend zu Avocado
   },
   vegan: {
-    title: "Vegan diet",
+    title: "Vegan Diet 🥦",
     content:
-      "A vegan diet excludes all animal products and is based on plant-based foods. This can lead to an increased intake of fiber and a reduced risk of certain diseases.",
+      "A vegan diet excludes all animal products and is based on plant-based foods. This can lead to an increased intake of fiber and a reduced risk of certain diseases. 🌿",
+    color: "#4caf50", // Grün, passend zu pflanzlicher Ernährung
   },
   paleo: {
-    title: "</i>Paleo diet",
+    title: "Paleo Diet 🍖",
     content:
-      "The Paleo diet is based on the presumed eating habits of early human ancestors and includes meat, fish, fruits, vegetables, nuts, and seeds, while avoiding processed foods, sugar, and grains.",
+      "The Paleo diet is based on the presumed eating habits of early human ancestors and includes meat, fish, fruits, vegetables, nuts, and seeds, while avoiding processed foods, sugar, and grains. 🥥",
+    color: "#8d6e63", // Brauntöne, passend zu natürlichen Lebensmitteln
+  },
+  mediterranean: {
+    title: "Mediterranean Diet 🫒",
+    content:
+      "The Mediterranean diet emphasizes fruits, vegetables, whole grains, and healthy fats like olive oil. It promotes heart health and has been linked to reduced risk of chronic diseases. 🌞",
+    color: "#f5b041", // Orange, passend zu mediterranen Zutaten
+  },
+  intermittent_fasting: {
+    title: "Intermittent Fasting ⏳",
+    content:
+      "Intermittent fasting alternates between periods of eating and fasting. It can help with weight loss, improve metabolism, and has various health benefits. ⚖️",
+    color: "#2196f3", // Blau, passend zu ausgewogenem Lebensstil
   },
 };
 
