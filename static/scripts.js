@@ -365,32 +365,27 @@ const diets = {
   keto: {
     title: "Ketogenic Diet 🥑",
     content:
-      "The ketogenic diet is a very low-carbohydrate, high-fat diet. It reduces blood sugar and insulin levels and shifts the body's metabolism away from carbohydrates towards fats and ketones. 🌟",
-    color: "#ffcc00", // Gelb, passend zu Avocado
+      "The ketogenic diet is a very low-carbohydrate, high-fat diet. It reduces blood sugar and insulin levels and shifts the body's metabolism away from carbohydrates towards fats and ketones. <br> <h3>Food:</h3>  Avocado 🥑 <br> Cheese 🧀 <br> Meat 🍖 <br> Nuts 🌰",
   },
   vegan: {
     title: "Vegan Diet 🥦",
     content:
-      "A vegan diet excludes all animal products and is based on plant-based foods. This can lead to an increased intake of fiber and a reduced risk of certain diseases. 🌿",
-    color: "#4caf50", // Grün, passend zu pflanzlicher Ernährung
+      "A vegan diet excludes all animal products and is based on plant-based foods. This can lead to an increased intake of fiber and a reduced risk of certain diseases. <br> <h3>Food:</h3> Tofu 🍲 <br> Legumes 🌱 <br> Fruits 🍉 <br> Vegetables 🥕",
   },
   paleo: {
     title: "Paleo Diet 🍖",
     content:
-      "The Paleo diet is based on the presumed eating habits of early human ancestors and includes meat, fish, fruits, vegetables, nuts, and seeds, while avoiding processed foods, sugar, and grains. 🥥",
-    color: "#8d6e63", // Brauntöne, passend zu natürlichen Lebensmitteln
+      "The Paleo diet is based on the presumed eating habits of early human ancestors and includes meat, fish, fruits, vegetables, nuts, and seeds, while avoiding processed foods, sugar, and grains. <br> <h3>Food:</h3> Grass-fed Beef 🥩 <br> Wild Fish 🐟 <br> Fruits 🍎 <br> Vegetables 🥦",
   },
   mediterranean: {
     title: "Mediterranean Diet 🫒",
     content:
-      "The Mediterranean diet emphasizes fruits, vegetables, whole grains, and healthy fats like olive oil. It promotes heart health and has been linked to reduced risk of chronic diseases. 🌞",
-    color: "#f5b041", // Orange, passend zu mediterranen Zutaten
+      "The Mediterranean diet emphasizes fruits, vegetables, whole grains, and healthy fats like olive oil. It promotes heart health and has been linked to reduced risk of chronic diseases. <br> <h3>Food:</h3> Olive Oil 🫒 <br> Whole Grains 🌾 <br> Nuts 🌰 <br> Fruits 🍑",
   },
   intermittent_fasting: {
     title: "Intermittent Fasting ⏳",
     content:
-      "Intermittent fasting alternates between periods of eating and fasting. It can help with weight loss, improve metabolism, and has various health benefits. ⚖️",
-    color: "#2196f3", // Blau, passend zu ausgewogenem Lebensstil
+      "Intermittent fasting alternates between periods of eating and fasting. It can help with weight loss, improve metabolism, and has various health benefits. <br> <h3>Food:</h3> Water 💧 <br> Black Coffee ☕ <br> Herbal Tea 🍵 <br> Low-Calorie Foods 🥗",
   },
 };
 

@@ -193,6 +193,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border: none;
 }
 
 .date-header {
@@ -211,7 +212,6 @@ main {
 .exercise-entry {
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
   background-color: #28344c;

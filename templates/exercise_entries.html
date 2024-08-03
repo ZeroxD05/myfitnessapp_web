@@ -3,12 +3,14 @@
 {% block content %}
 <form method="post">
   <label for="exercise_id">Exercise:</label>
-  <select style="background-color: #28344c; border: none; color: rgba(255, 255, 255, 0.562); " id="exercise_id" name="exercise_id" required>
-    <option value="" disabled selected>Choose an exercise</option>
-    {% for exercise in exercises %}
-    <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>
-    {% endfor %}
-  </select>
+  <div style="position: relative;">
+    <select id="exercise-select" name="exercise_id" style="background-color: #28344c; border: none; color: rgba(255, 255, 255, 0.562);">
+      <option value="" disabled selected>Choose an exercise</option>
+      {% for exercise in exercises %}
+      <option value="{{ exercise[0] }}">{{ exercise[1] }}</option>
+      {% endfor %}
+    </select>
+  </div>
   <br />
 
   <label  for="reps">Reps:</label>
@@ -22,6 +24,7 @@
 
   <input type="submit" value="+" />
 </form>
+
 <h2 style="color: white;">Exercises:</h2>
 <div style="color: black;" id="exercise-list">
   {% set current_date = '' %}
@@ -32,8 +35,8 @@
         <hr class="date-divider">
       {% endif %}
 
-        <div style="color: white;" id="date-{{ entry['id'] }}" class="date-header">{{ entry['date'] }}</div>
-        
+      <div style="color: white;" id="date-{{ entry['id'] }}" class="date-header">{{ entry['date'] }}</div>
+      
       <div class="exercise-group"> <!-- Start new day's group -->
       {% set current_date = entry['date'] %}
     {% endif %}
@@ -54,11 +57,10 @@
         <button class="delete-exercise" data-id="{{ entry['id'] }}">Delete</button>
       </div>
     </div>
-{% endfor %}
+  {% endfor %}
   {% if current_date != '' %}
     </div> <!-- End of the last day's group -->
   {% endif %}
 </div>
-
 <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}
