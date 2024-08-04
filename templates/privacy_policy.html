@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <style>
+      /* Hier wird CSS direkt eingefügt, falls die externe Datei nicht verfügbar ist */
+
+      /* Container für die Policy-Buttons */
+      .policy-buttons-container {
+        width: 50%;
+        text-align: center; /* Zentriert die Buttons im Container */
+      }
+
+      /* Stil für die Policy-Buttons */
+      .policy-button {
+        border-radius: 8px; /* Etwas abgerundeter als vorher */
+        background-color: #007bff; /* Hauptfarbe für den Button */
+        color: white; /* Textfarbe */
+        border: 2px solid #007bff; /* Etwas breiterer Rand */
+        padding: 12px 24px; /* Angepasste Polsterung */
+        font-size: 16px; /* Leicht kleinere Schriftgröße */
+        font-weight: bold; /* Fettdruck für die Schrift */
+        cursor: pointer; /* Zeiger bei Hover */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Sanftere Übergänge */
+        margin: 8px; /* Geringer Abstand um die Buttons */
+        display: inline-block; /* Inline-Block für die Buttons */
+        text-align: center; /* Zentrierter Text */
+        text-decoration: none; /* Kein Unterstrich bei Links */
+      }
+
+      /* Stil für die Buttons beim Hover-Effekt */
+      .policy-button:hover {
+        background-color: #0056b3; /* Dunklerer Farbton beim Hover */
+        border-color: #0056b3; /* Randfarbe beim Hover */
+      }
+
+      /* Stil für den Inhalt der Policy-Seite */
+      .policy-content {
+        padding: 20px; /* Polsterung um den Inhalt */
+        max-width: 900px; /* Breitere maximale Breite */
+        margin: 20px auto; /* Zentriert den Inhalt */
+        font-family: "Arial", sans-serif; /* Arial-Schriftart */
+        line-height: 1.6; /* Erhöhte Zeilenhöhe für bessere Lesbarkeit */
+      }
+
+      /* Stil für die Überschrift der Policy-Seite */
+      .policy-content h1 {
+        font-size: 2.5rem; /* Größere Schriftgröße für die Überschrift */
+        color: #333; /* Dunkle Farbe für den Text */
+        margin-bottom: 20px; /* Abstand unter der Überschrift */
+      }
+
+      /* Stil für die Absätze der Policy-Seite */
+      .policy-content p {
+        font-size: 1rem; /* Schriftgröße für den Text */
+        color: #555; /* Etwas hellere Farbe für den Text */
+        margin-bottom: 15px; /* Abstand unter den Absätzen */
+      }
+
+      /* Stil für Links im Policy-Inhalt */
+      .policy-content a {
+        color: #007bff; /* Linkfarbe */
+        text-decoration: none; /* Kein Unterstrich */
+      }
+
+      /* Stil für Links beim Hover-Effekt */
+      .policy-content a:hover {
+        text-decoration: underline; /* Unterstrich beim Hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="policy-content">
+      <h1 style="color: white">Privacy Policy</h1>
+      <p style="color: white">
+        Your privacy is important to us. This Privacy Policy explains how we
+        collect, use, disclose, and safeguard your information when you visit
+        our website.
+      </p>
+
+      <h2 style="color: white">Information We Collect</h2>
+      <p style="color: white">
+        We may collect information about you in a variety of ways. The
+        information we may collect includes:
+      </p>
+      <ul>
+        <li>
+          <strong>Personal Data:</strong> Personally identifiable information,
+          such as your name and your g-mail, that you give to us when you
+          register with the Site or when you choose to participate in various
+          activities related to the Site.
+        </li>
+        <li>
+          <strong>Derivative Data:</strong> Information our servers
+          automatically collect when you access the Site, such as your IP
+          address, your browser type, your operating system, your access times,
+          and the pages you have previously visited.
+        </li>
+      </ul>
+
+      <h2 style="color: white">Use of Your Information</h2>
+      <p style="color: white">
+        Having accurate information about you permits us to provide you with a
+        smooth, efficient, and customized experience. Specifically, we may use
+        information collected about you via the Site to:
+      </p>
+      <ul>
+        <li>Assist law enforcement and respond to subpoenas.</li>
+        <li>
+          Compile anonymous statistical data and analysis for use internally.
+        </li>
+        <li>Create and manage your account.</li>
+        <li>
+          Deliver targeted advertising, coupons, newsletters, and other
+          information regarding promotions and the Site to you.
+        </li>
+        <li>Email you regarding your account or order.</li>
+        <li>
+          Monitor and analyze usage and trends to improve your experience with
+          the Site.
+        </li>
+        <li>Notify you of updates to the Site.</li>
+        <li>Perform other business activities as needed.</li>
+      </ul>
+
+      <h2 style="color: white">Disclosure of Your Information</h2>
+      <p style="color: white">
+        We may share information we have collected about you in certain
+        situations. Your information may be disclosed as follows:
+      </p>
+      <ul>
+        <li>
+          <strong>By Law or to Protect Rights:</strong> If we believe the
+          release of information about you is necessary to respond to legal
+          process, to investigate or remedy potential violations of our
+          policies, or to protect the rights, property, and safety of others, we
+          may share your information as permitted or required by any applicable
+          law, rule, or regulation.
+        </li>
+
+        <li>
+          <strong>Third-Party Service Providers:</strong> We may share your
+          information with third-party service providers that perform services
+          for us or on our behalf, such as payment processing, data analysis,
+          email delivery, hosting services, customer service, and marketing
+          assistance.
+        </li>
+      </ul>
+
+      <h2 style="color: white">Security of Your Information</h2>
+      <p style="color: white">
+        We use administrative, technical, and physical security measures to help
+        protect your personal information. While we have taken reasonable steps
+        to secure the personal information you provide to us, please be aware
+        that despite our efforts, no security measures are perfect or
+        impenetrable, and no method of data transmission can be guaranteed
+        against any interception or other type of misuse.
+      </p>
+
+      <h2 style="color: white">Policy for Children</h2>
+      <p style="color: white">
+        We do not knowingly solicit information from or market to children under
+        the age of 13. If we learn that we have collected personal information
+        from a child under age 13 without verification of parental consent, we
+        will delete that information as quickly as possible.
+      </p>
+
+      <h2 style="color: white">Changes to This Privacy Policy</h2>
+      <p style="color: white">
+        We may update this Privacy Policy from time to time in order to reflect,
+        for example, changes to our practices or for other operational, legal,
+        or regulatory reasons.
+      </p>
+
+      <p style="color: white">
+        For any questions about this Privacy Policy, please contact us at
+        <a href="mailto:ata2005hh@gmail.com">ata2005hh@gmail.com</a>
+      </p>
+      <!-- Add more content as needed -->
+      <div class="policy-buttons-container">
+        <a
+          href="{{ url_for('index') }}"
+          style="color: white"
+          class="policy-button"
+          >Back to Home</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

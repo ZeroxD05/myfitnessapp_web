@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <style>
+      /* Hier wird CSS direkt eingefügt, falls die externe Datei nicht verfügbar ist */
+      * {
+        color: white;
+      }
+      /* Container für die Policy-Buttons */
+      .policy-buttons-container {
+        width: 50%;
+        margin: 20px auto; /* Zentriert den Container */
+        text-align: center; /* Zentriert die Buttons im Container */
+      }
+
+      /* Stil für die Policy-Buttons */
+      .policy-button {
+        border-radius: 8px; /* Etwas abgerundeter als vorher */
+        background-color: #007bff; /* Hauptfarbe für den Button */
+        color: white; /* Textfarbe */
+        border: 2px solid #007bff; /* Etwas breiterer Rand */
+        padding: 12px 24px; /* Angepasste Polsterung */
+        font-size: 16px; /* Leicht kleinere Schriftgröße */
+        font-weight: bold; /* Fettdruck für die Schrift */
+        cursor: pointer; /* Zeiger bei Hover */
+        transition: background-color 0.3s ease, color 0.3s ease; /* Sanftere Übergänge */
+        margin: 8px; /* Geringer Abstand um die Buttons */
+        display: inline-block; /* Inline-Block für die Buttons */
+        text-align: center; /* Zentrierter Text */
+        text-decoration: none; /* Kein Unterstrich bei Links */
+      }
+
+      /* Stil für die Buttons beim Hover-Effekt */
+      .policy-button:hover {
+        background-color: #0056b3; /* Dunklerer Farbton beim Hover */
+        border-color: #0056b3; /* Randfarbe beim Hover */
+      }
+
+      /* Stil für den Inhalt der Policy-Seite */
+      .policy-content {
+        padding: 20px; /* Polsterung um den Inhalt */
+        max-width: 900px; /* Breitere maximale Breite */
+        margin: 20px auto; /* Zentriert den Inhalt */
+        font-family: "Arial", sans-serif; /* Arial-Schriftart */
+        line-height: 1.6; /* Erhöhte Zeilenhöhe für bessere Lesbarkeit */
+      }
+
+      /* Stil für die Überschrift der Policy-Seite */
+      .policy-content h1 {
+        font-size: 2.5rem; /* Größere Schriftgröße für die Überschrift */
+        color: #333; /* Dunkle Farbe für den Text */
+        margin-bottom: 20px; /* Abstand unter der Überschrift */
+      }
+
+      /* Stil für die Absätze der Policy-Seite */
+      .policy-content p {
+        font-size: 1rem; /* Schriftgröße für den Text */
+        color: #555; /* Etwas hellere Farbe für den Text */
+        margin-bottom: 15px; /* Abstand unter den Absätzen */
+      }
+
+      /* Stil für Links im Policy-Inhalt */
+      .policy-content a {
+        color: #007bff; /* Linkfarbe */
+        text-decoration: none; /* Kein Unterstrich */
+      }
+
+      /* Stil für Links beim Hover-Effekt */
+      .policy-content a:hover {
+        text-decoration: underline; /* Unterstrich beim Hover */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="policy-content">
+      <h1>Terms of Service</h1>
+
+      <h2>1. Introduction</h2>
+      <p>
+        Welcome to our app. These Terms of Service ("Terms") govern your use of
+        our app and services. By accessing or using this app, you agree to these
+        Terms. If you do not agree with these terms, you must not use the app.
+      </p>
+
+      <h2>2. Use of the app</h2>
+      <p>
+        <strong>Eligibility:</strong> You must be at least 14 years old to use
+        our app.
+      </p>
+      <p>
+        <strong>Behavior:</strong> You agree to use the website only for lawful
+        purposes and in accordance with all applicable laws. You are prohibited
+        from posting content that is illegal, harmful, offensive, or
+        inappropriate.
+      </p>
+
+      <h2>3. Intellectual Property Rights</h2>
+      <p>
+        <strong>Ownership:</strong> All content on this website, including but
+        not limited to text, graphics, logos, and software, is the property of
+        us or our licensors and is protected by copyright, trademark, and other
+        intellectual property rights.
+      </p>
+      <p>
+        <strong>License:</strong> You are granted a limited, non-exclusive,
+        non-transferable license to use the app for your personal,
+        non-commercial use. You may only use the content from the app in
+        accordance with the terms set out in these Terms.
+      </p>
+
+      <h2>4. Limitation of Liability</h2>
+      <p>
+        We shall not be liable for any indirect, special, or consequential
+        damages arising out of or in connection with your use of our app. This
+        includes, but is not limited to, damages for loss of data, loss of
+        profits, or loss of revenue.
+      </p>
+
+      <h2>5. Changes to the Terms</h2>
+      <p>
+        We reserve the right to modify these Terms at any time. Changes will be
+        posted on this page. Your continued use of the website after the posting
+        of changes constitutes your acceptance of the modified Terms.
+      </p>
+
+      <h2>6. Governing Law</h2>
+      <p>
+        These Terms are governed by the laws of the country in which we are
+        based, without regard to its conflict of law principles. Any disputes
+        arising out of or related to these Terms will be subject to the
+        exclusive jurisdiction of the courts in that country.
+      </p>
+
+      <h2>7. Contact</h2>
+      <p>
+        If you have any questions about these Terms, please contact us at
+        <a href="mailto:ata2005hh@gmail.com">ata2005hh@gmail.com</a>.
+      </p>
+      <div class="policy-buttons-container">
+        <a
+          href="{{ url_for('index') }}"
+          style="color: white"
+          class="policy-button"
+          >Back to Home</a
+        >
+      </div>
+    </div>
+  </body>
+</html>

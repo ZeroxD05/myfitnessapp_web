@@ -2,16 +2,35 @@
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-  />
-   <link rel="stylesheet" href="https://unpkg.com/boxicons/css/boxicons.min.css">
-  <!-- Toggle Button for Goals-->
+/>
+<link rel="stylesheet" href="https://unpkg.com/boxicons/css/boxicons.min.css" />
+<!-- Toggle Button for Goals-->
 <style>
   .toggle-button:hover {
-      background-color: #333;
-      color: #fff;
-    }
+    background-color: #333;
+    color: #fff;
+  }
+
+  .policy-button {
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 10px 0;
+    display: block;
+  }
+
+  .policy-button:hover {
+    background-color: #0056b3;
+  }
 </style>
-  <div class="goals-container">
+
+<div class="goals-container">
   <button id="toggle-goals" class="toggle-button">
     Notes <i class="bx bx-chevron-down"></i>
   </button>
@@ -74,7 +93,7 @@
 <br />
 <!--toggle-button   -->
 <!-- Toggle Button for Blog-->
-<div class="goals-container" style="margin-top: -4vh;">
+<div class="goals-container" style="margin-top: -4vh">
   <button id="toggle-blog" class="toggle-button">
     Bulk/Cut/Hold <i class="bx bx-chevron-down"></i>
   </button>
@@ -84,7 +103,7 @@
       <div class="content-section">
         <button class="collapsible">Bulking</button>
         <div class="content">
-          <h3>What is Bulking? </h3>
+          <h3>What is Bulking?</h3>
           <ul>
             <li>
               Bulking is a phase where you intentionally consume more calories
@@ -326,82 +345,111 @@
 <br />
 
 <div class="goals-container" style="margin-top: -4vh">
-    <button id="toggle-diets" class="toggle-button">
-      Diets <i class="bx bx-chevron-down"></i>
-    </button>
-    <div class="content-section" id="diets-content" style="display: none;">
-      <button style="
-      border-radius: 5px;
-      background-color: #007bff;
-      color: white;
-      border: 1px solid #007bff;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    " class="toggle-button diet-button" data-diet="keto">
+  <button id="toggle-diets" class="toggle-button">
+    Diets <i class="bx bx-chevron-down"></i>
+  </button>
+  <div class="content-section" id="diets-content" style="display: none">
+    <button
+      style="
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        border: 1px solid #007bff;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      "
+      class="toggle-button diet-button"
+      data-diet="keto"
+    >
       Ketogenic Diet 🥑 <i class="bx bx-chevron-down"></i>
     </button>
 
-    <button style="
-      border-radius: 5px;
-      background-color: #28a745;
-      color: white;
-      border: 1px solid #28a745;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    " class="toggle-button diet-button" data-diet="vegan">
+    <button
+      style="
+        border-radius: 5px;
+        background-color: #28a745;
+        color: white;
+        border: 1px solid #28a745;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      "
+      class="toggle-button diet-button"
+      data-diet="vegan"
+    >
       Vegan Diet 🥦 <i class="bx bx-chevron-down"></i>
     </button>
 
-    <button style="
-      border-radius: 5px;
-      background-color: #dc3545;
-      color: white;
-      border: 1px solid #dc3545;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    " class="toggle-button diet-button" data-diet="paleo">
+    <button
+      style="
+        border-radius: 5px;
+        background-color: #dc3545;
+        color: white;
+        border: 1px solid #dc3545;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      "
+      class="toggle-button diet-button"
+      data-diet="paleo"
+    >
       Paleo Diet 🍖 <i class="bx bx-chevron-down"></i>
     </button>
-    <button style="
-      border-radius: 5px;
-      background-color: #7b8f25;
-      color: white;
-      border: 1px solid #7b8f25;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    " class="toggle-button diet-button" data-diet="mediterranean">
+    <button
+      style="
+        border-radius: 5px;
+        background-color: #7b8f25;
+        color: white;
+        border: 1px solid #7b8f25;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      "
+      class="toggle-button diet-button"
+      data-diet="mediterranean"
+    >
       Mediterranean Diet 🫒 <i class="bx bx-chevron-down"></i>
     </button>
-    <button style="
-      border-radius: 5px;
-      background-color: #6882f3;
-      color: white;
-      border: 1px solid #6882f3;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    " class="toggle-button diet-button" data-diet="intermittent_fasting">
+    <button
+      style="
+        border-radius: 5px;
+        background-color: #6882f3;
+        color: white;
+        border: 1px solid #6882f3;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+      "
+      class="toggle-button diet-button"
+      data-diet="intermittent_fasting"
+    >
       Intermittent Fasting ⏳ <i class="bx bx-chevron-down"></i>
     </button>
-    </div>
   </div>
-
-  <!-- Link to external JavaScript file -->
-  <script src="{{ url_for('static', filename='scripts.js') }}"></script>
-
-  {% endblock %}
 </div>
+
+<!-- Buttons for Privacy Policy and Terms of Service -->
+<div class="policy-buttons-container">
+  <a href="{{ url_for('privacy_policy') }}" class="policy-button"
+    ><i class="fas fa-shield-alt"></i
+  ></a>
+  <a href="{{ url_for('terms_of_service') }}" class="policy-button"
+    ><i class="fas fa-file-contract"></i
+  ></a>
+</div>
+
+<!-- Link to external JavaScript file -->
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
+
+{% endblock %}
