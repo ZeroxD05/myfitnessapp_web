@@ -1,7 +1,5 @@
-CREATE TABLE friends (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    friend_id INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (friend_id) REFERENCES users(id)
-);
+-- Füge zunächst eine user_id Spalte zu jeder relevanten Tabelle hinzu
+ALTER TABLE food ADD COLUMN user_id TEXT;
+ALTER TABLE daily_entries ADD COLUMN user_id TEXT;
+ALTER TABLE goals ADD COLUMN user_id TEXT;
+ALTER TABLE exercise_entries ADD COLUMN user_id TEXT;

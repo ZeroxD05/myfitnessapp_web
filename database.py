@@ -11,9 +11,10 @@ def create_database():
     conn = get_db_connection()
     c = conn.cursor()
 
-    # Erstelle die Tabelle für Lebensmittel
+    # Erstelle die Tabelle für Lebensmittel mit user_id
     c.execute('''CREATE TABLE IF NOT EXISTS food (
                     id INTEGER PRIMARY KEY,
+                    user_id TEXT NOT NULL,
                     name TEXT NOT NULL,
                     calories INTEGER NOT NULL,
                     carbs INTEGER NOT NULL,
@@ -21,18 +22,20 @@ def create_database():
                     fat INTEGER NOT NULL
                 )''')
 
-    # Erstelle die Tabelle für tägliche Einträge
+    # Erstelle die Tabelle für tägliche Einträge mit user_id
     c.execute('''CREATE TABLE IF NOT EXISTS daily_entries (
                     id INTEGER PRIMARY KEY,
+                    user_id TEXT NOT NULL,
                     date TEXT NOT NULL,
                     food_id INTEGER NOT NULL,
                     quantity INTEGER NOT NULL,
                     FOREIGN KEY (food_id) REFERENCES food (id) ON DELETE CASCADE
                 )''')
 
-    # Erstelle die Tabelle für Ziele
+    # Erstelle die Tabelle für Ziele mit user_id
     c.execute('''CREATE TABLE IF NOT EXISTS goals (
                     id INTEGER PRIMARY KEY,
+                    user_id TEXT NOT NULL,
                     calories INTEGER NOT NULL,
                     carbs INTEGER NOT NULL,
                     protein INTEGER NOT NULL,
@@ -45,9 +48,10 @@ def create_database():
                     name TEXT NOT NULL
                 )''')
 
-    # Erstelle die Tabelle für Übungseinträge
+    # Erstelle die Tabelle für Übungseinträge mit user_id
     c.execute('''CREATE TABLE IF NOT EXISTS exercise_entries (
                     id INTEGER PRIMARY KEY,
+                    user_id TEXT NOT NULL,
                     date TEXT NOT NULL,
                     exercise_id INTEGER NOT NULL,
                     reps INTEGER NOT NULL,
@@ -164,18 +168,18 @@ def delete_user(username):
     conn.close()
 
 # Funktionen für die Verwaltung von Lebensmitteln
-def add_food(name, calories, carbs, protein, fat):
+def add_food(name, calories, carbs, protein, fat, user_id):
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute("INSERT INTO food (name, calories, carbs, protein, fat) VALUES (?, ?, ?, ?, ?)",
-              (name, calories, carbs, protein, fat))
+    c.execute("INSERT INTO food (name, calories, carbs, protein, fat, user_id) VALUES (?, ?, ?, ?, ?, ?)",
+              (name, calories, carbs, protein, fat, user_id))
     conn.commit()
     conn.close()
 
-def get_food():
+def get_food(user_id):
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute("SELECT * FROM food")
+    c.execute("SELECT * FROM food WHERE user_id = ?", (user_id,))
     rows = c.fetchall()
     conn.close()
     return rows
@@ -197,43 +201,41 @@ def get_exercises():
     return rows
 
 # Funktionen für Übungseinträge
-def add_exercise_entry(date, exercise_id, reps, sets, kg):
+def add_exercise_entry(date, exercise_id, reps, sets, kg, user_id):
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute("INSERT INTO exercise_entries (date, exercise_id, reps, sets, kg) VALUES (?, ?, ?, ?, ?)",
-              (date, exercise_id, reps, sets, kg))
+    c.execute("INSERT INTO exercise_entries (date, exercise_id, reps, sets, kg, user_id) VALUES (?, ?, ?, ?, ?, ?)",
+              (date, exercise_id, reps, sets, kg, user_id))
     conn.commit()
     conn.close()
 
-def get_exercise_entries():
+def get_exercise_entries(user_id):
     conn = get_db_connection()
     c = conn.cursor()
     c.execute("SELECT exercise_entries.id, date, exercises.name, reps, sets, kg, (reps * sets * kg) as total_weight "
-              "FROM exercise_entries JOIN exercises ON exercise_entries.exercise_id = exercises.id")
+              "FROM exercise_entries JOIN exercises ON exercise_entries.exercise_id = exercises.id "
+              "WHERE exercise_entries.user_id = ?", (user_id,))
     rows = c.fetchall()
     conn.close()
     return rows
 
 # Funktionen für die Verwaltung von Zielen
-def set_goals(calories, carbs, protein, fat):
+def set_goals(calories, carbs, protein, fat, user_id):
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute("DELETE FROM goals")
-    c.execute("INSERT INTO goals (calories, carbs, protein, fat) VALUES (?, ?, ?, ?)",
-              (calories, carbs, protein, fat))
+    c.execute("DELETE FROM goals WHERE user_id = ?", (user_id,))
+    c.execute("INSERT INTO goals (calories, carbs, protein, fat, user_id) VALUES (?, ?, ?, ?, ?)",
+              (calories, carbs, protein, fat, user_id))
     conn.commit()
     conn.close()
 
-def get_goals():
+def get_goals(user_id):
     conn = get_db_connection()
     c = conn.cursor()
-    c.execute("SELECT * FROM goals")
+    c.execute("SELECT * FROM goals WHERE user_id = ?", (user_id,))
     goals = c.fetchone()
     conn.close()
     return goals
-
-
-
 
 def get_all_users():
     conn = get_db_connection()

@@ -11,7 +11,7 @@ app.secret_key = 'supersecretkey'  # Ändere dies in einen echten geheimen Schl�
 socketio = SocketIO(app, cors_allowed_origins="*")  # Konfiguriere CORS, wenn nötig
 
 ADMIN_Name = "zero"
-ADMIN_Password = "zero123"
+ADMIN_Password = "Atailayda05"
 
 create_database()
 
@@ -113,7 +113,7 @@ def food():
             flash("Fehler beim Hinzufügen des Lebensmittels. Überprüfe die Eingaben.", 'error')
         return redirect(url_for('food'))
 
-    foods = get_food()
+    foods = get_food(session['username'])
     return render_template('food.html', foods=foods)
 
 @app.route('/exercise_entries', methods=['GET', 'POST'])
@@ -138,7 +138,7 @@ def exercise_entries():
         return redirect(url_for('exercise_entries'))
 
     exercises = get_exercises()
-    entries = get_exercise_entries()
+    entries = get_exercise_entries(session['username'])
     return render_template('exercise_entries.html', exercises=exercises, entries=entries)
 
 @app.route('/admin_dashboard', methods=['GET', 'DELETE'])
@@ -185,7 +185,7 @@ def goals():
         flash("Added goal", 'success')
         return redirect(url_for('goals'))
 
-    goals = get_goals()
+    goals = get_goals(session['username'])
     return render_template('goals.html', goals=goals)
 
 @app.route('/delete_food/<int:item_id>', methods=['DELETE'])

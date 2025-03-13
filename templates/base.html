@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MyFitnessApp</title>
+    <title>myFitF</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -12,6 +12,10 @@
     <link
       href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
       rel="stylesheet"
+    />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='manifest.json') }}"
     />
     <style>
       @keyframes shake {
@@ -46,7 +50,7 @@
             href="{{ url_for('index') }}"
             style="text-decoration: none; color: #ffffff"
           >
-            FitFusion
+            myFitF
           </a>
         </h1>
         <div class="profile-container">
